@@ -1,0 +1,10 @@
+{
+	"BuildId": "13144385",
+	"Modules": 
+	{
+		"KantanChartsDatasource": "UE4Editor-KantanChartsDatasource.dylib",
+		"KantanChartsEditor": "UE4Editor-KantanChartsEditor.dylib",
+		"KantanChartsSlate": "UE4Editor-KantanChartsSlate.dylib",
+		"KantanChartsUMG": "UE4Editor-KantanChartsUMG.dylib"
+	}
+}
