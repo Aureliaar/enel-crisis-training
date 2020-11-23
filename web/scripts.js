@@ -23,7 +23,7 @@ class Modifier {
       };
       isClickable() {return true;}
   }
-  class Squad extends Modifier {
+  class Squad extends ClickableModifier {
     constructor(mod) {
         this.mod = mod;
         this.time = 0;
@@ -46,6 +46,9 @@ class Modifier {
             return false;
         }        
         return true;
+    }
+    isClickable(){
+        return this.isInCooldown();
     }
   }
 
