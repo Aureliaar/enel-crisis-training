@@ -1,3 +1,59 @@
+class Modifier {
+    constructor(mod) {
+      this.mod = mod;
+      this.time = 0;
+    }
+    update(delta_time){
+        this.time = this.time + delta_time;
+
+    }
+
+  } 
+
+  class ClickableModifier {
+    constructor(mod) {
+        this.mod = mod;
+        this.time = 0;
+        this.clicked = False;
+      }
+      click(){
+          if(this.isClickable()){
+              this.clicked = True;
+          }
+      };
+      isClickable() {return true;}
+  }
+  class Squad extends Modifier {
+    constructor(mod) {
+        this.mod = mod;
+        this.time = 0;
+        this.maxCooldown = 120;
+        this.maxDuration = 60;
+        this.modpersec = -1;
+      }
+    update(delta_time){
+        if (!this.clicked) return;
+        this.time += delta_time;
+        
+        if (!this.isInCooldown()){
+            this.mod += this.modpersec;
+        }
+    }
+    isInCooldown(){
+        let total = this.maxCooldown + this.maxDuration;
+        let t = time%total;
+        if (t<this.maxDuration){
+            return false;
+        }        
+        return true;
+    }
+  }
+
+
+
+
+
+
 var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
 var xAxis = ['0', '5', '10', '15', '20', '25', '30', '35', '40', '45']
 var graphValues = [639, 465, 493, 478, 589, 632, 674]
