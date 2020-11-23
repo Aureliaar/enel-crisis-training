@@ -11,8 +11,9 @@ class Modifier {
   } 
 
   class ClickableModifier {
-    constructor(mod) {
+    constructor(mod, buttonref) {
         this.mod = mod;
+        this.buttonref = buttonref
         this.time = 0;
         this.clicked = False;
       }
@@ -54,9 +55,6 @@ class Modifier {
 
 
 
-
-
-
 var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
 var xAxis = ['0', '5', '10', '15', '20', '25', '30', '35', '40', '45']
 var graphValues = [639, 465, 493, 478, 589, 632, 674]
@@ -79,6 +77,11 @@ var myChart = new Chart(ctx, {
     type: 'line',
     data: chartData,
     options: {
+        elements: {
+            point:{
+              radius: 0
+            }
+          },
         scales: {
             yAxes: [{
                 ticks: {
@@ -102,5 +105,9 @@ setInterval(function(){
 }, 600)
 
 function buttonClick(){
-    curveMaxVal = curveMaxVal-200
+    curveMaxVal = curveMaxVal-200;
+    clickable = new ClickableModifier( 0, document.getElementById("button1"));
+    //document.getElementById("button2").classList.add('Squad');
 }
+
+
