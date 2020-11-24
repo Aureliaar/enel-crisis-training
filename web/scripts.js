@@ -11,23 +11,27 @@ class Modifier {
   } 
 
   class ClickableModifier {
+    
     constructor(mod, buttonref) {
         this.mod = mod;
         this.buttonref = buttonref
         this.time = 0;
         this.clicked = false;
-        buttonref.onclick = this.click();
+        buttonref.onclick = this.click;
         console.log(this+" init");
-
-      }
-      click(){
+        
+        console.log(this.buttonref.id);
+    }
+    isClickable() {return true;}
+    click(){
         console.log(this);
 
-          if(this.isClickable()){
-              this.clicked = true;
-          }
-      };
-      isClickable() {return true;}
+        if(this.isClickable){
+            this.clicked = true;
+        }
+    };
+    
+    
   }
   class Squad extends ClickableModifier {
     constructor(mod) {
@@ -110,18 +114,24 @@ function initChart(){
         myChart.update();
     }, 600)
 }
-initButton(function(id){
-    //curveMaxVal = curveMaxVal-200;
-    console.log(document.getElementById("button1"));
-    clickable = new ClickableModifier( 0, document.getElementById("button1"));
-    //document.getElementById("button2").classList.add('Squad');
-})
 
-initButtons(function(){
-    //curveMaxVal = curveMaxVal-200;
-    console.log(document.getElementById("button1"));
-    clickable = new ClickableModifier( 0, document.getElementById("button1"));
-    //document.getElementById("button2").classList.add('Squad');
-})
+function initButtonsAndChart(){
+    initChart();
+    initButton("button1");
+    initButton("button2");
+}
+
+function initButton(buttonId){
+    console.log(document.getElementById(buttonId));
+    clickable = new ClickableModifier( 0, document.getElementById(buttonId));
+    console.log(clickable.isClickable());
+}
+
+// initButtons(function(){
+//     //curveMaxVal = curveMaxVal-200;
+//     console.log(document.getElementById("button1"));
+//     clickable = new ClickableModifier( 0, document.getElementById("button1"));
+//     //document.getElementById("button2").classList.add('Squad');
+// })
 
 
