@@ -10,9 +10,10 @@ class Modifier {
 
   } 
 
-  class ClickableModifier {
+  class ClickableModifier extends Modifier {
     
     constructor(mod, buttonref) {
+        super(mod);
         this.mod = mod;
         this.buttonref = buttonref
         this.time = 0;
@@ -34,7 +35,8 @@ class Modifier {
     
   }
   class Squad extends ClickableModifier {
-    constructor(mod) {
+    constructor(mod, buttonref) {
+        super(mod, buttonref);
         this.mod = mod;
         this.time = 0;
         this.maxCooldown = 120;
