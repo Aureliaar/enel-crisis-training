@@ -15,11 +15,16 @@ class Modifier {
         this.mod = mod;
         this.buttonref = buttonref
         this.time = 0;
-        this.clicked = False;
+        this.clicked = false;
+        buttonref.onclick = this.click();
+        console.log(this+" init");
+
       }
       click(){
+        console.log(this);
+
           if(this.isClickable()){
-              this.clicked = True;
+              this.clicked = true;
           }
       };
       isClickable() {return true;}
@@ -105,14 +110,18 @@ function initChart(){
         myChart.update();
     }, 600)
 }
-
-
-
-function buttonClick(){
-    curveMaxVal = curveMaxVal-200;
+initButton(function(id){
+    //curveMaxVal = curveMaxVal-200;
     console.log(document.getElementById("button1"));
     clickable = new ClickableModifier( 0, document.getElementById("button1"));
     //document.getElementById("button2").classList.add('Squad');
-}
+})
+
+initButtons(function(){
+    //curveMaxVal = curveMaxVal-200;
+    console.log(document.getElementById("button1"));
+    clickable = new ClickableModifier( 0, document.getElementById("button1"));
+    //document.getElementById("button2").classList.add('Squad');
+})
 
 
