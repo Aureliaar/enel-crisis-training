@@ -73,6 +73,34 @@ class Modifier {
     }
   }
 
+class GruppoElettrogeno extends ClickableModifier{
+      //so this thing activates, remains active for a while and then gets disabled (after 1 sec atm)
+    constructor(mod, buttonref) {
+        super(mod, buttonref);
+        this.interval = setInterval(() => {
+            this.update(0.066);
+        }, 66)
+    }
+    click(){
+        if (this.isClickable() && !this.clicked){
+            super.click();
+            setTimeout(() => {
+                this.buttonref.disabled=true
+                clearInterval(this.interval)
+            }, 1000)
+        }
+    }
+    update(delta_time){
+        if (!this.clicked) return;
+        this.time += delta_time;
+        console.log(this.time);
+
+        if (!this.disabled){
+            console.log("update");
+            this.mod += this.modpersec * delta_time;
+        }
+    }
+}
 
 function initChart(){
     var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
@@ -129,12 +157,18 @@ function initChart(){
 function initButtonsAndChart(){
     initChart();
     initButton("button1");
-    //initButton("button2");
+    initGruppoElettrogeno("button2");
 }
 
 function initButton(buttonId){
     console.log(document.getElementById(buttonId));
     clickable = new Squad( 0, document.getElementById(buttonId));
+    console.log(clickable.isClickable());
+}
+
+function initGruppoElettrogeno(buttonId){
+    console.log(document.getElementById(buttonId));
+    clickable = new GruppoElettrogeno( 0, document.getElementById(buttonId));
     console.log(clickable.isClickable());
 }
 
