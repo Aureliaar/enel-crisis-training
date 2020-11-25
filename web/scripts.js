@@ -77,28 +77,20 @@ class GruppoElettrogeno extends ClickableModifier{
       //so this thing activates, remains active for a while and then gets disabled (after 1 sec atm)
     constructor(mod, buttonref) {
         super(mod, buttonref);
-        this.interval = setInterval(() => {
-            this.update(0.066);
-        }, 66)
     }
     click(){
-        if (this.isClickable() && !this.clicked){
-            super.click();
-            setTimeout(() => {
-                this.buttonref.disabled=true
-                clearInterval(this.interval)
-            }, 1000)
-        }
+        super.click();
+        this.buttonref.disabled=true
     }
-    update(delta_time){
-        if (!this.clicked) return;
-        this.time += delta_time;
-        console.log(this.time);
+}
 
-        if (!this.disabled){
-            console.log("update");
-            this.mod += this.modpersec * delta_time;
-        }
+class TaskForce extends Squad{
+    constructor(mod, buttonref) {
+        super(mod, buttonref);
+        this.buttonref.disabled=true
+        setTimeout(() => {
+            this.buttonref.disabled=false
+        }, 5000)
     }
 }
 
@@ -158,6 +150,7 @@ function initButtonsAndChart(){
     initChart();
     initButton("button1");
     initGruppoElettrogeno("button2");
+    initTaskForce("button3");
 }
 
 function initButton(buttonId){
@@ -170,6 +163,11 @@ function initGruppoElettrogeno(buttonId){
     console.log(document.getElementById(buttonId));
     clickable = new GruppoElettrogeno( 0, document.getElementById(buttonId));
     console.log(clickable.isClickable());
+}
+
+function initTaskForce(buttonId){
+    console.log(document.getElementById(buttonId));
+    clickable = new TaskForce( 0, document.getElementById(buttonId));
 }
 
 // initButtons(function(){
