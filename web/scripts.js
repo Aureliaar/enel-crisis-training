@@ -8,8 +8,7 @@ class Modifier {
         this.time = this.time + delta_time;
 
     }
-
-  } 
+} 
 
   class ClickableModifier extends Modifier {
     
@@ -34,30 +33,51 @@ class Modifier {
         //}
     };
     isClickable() {return true;}
+}
 
-    
-    
-  }
-  class Squad extends ClickableModifier {
+const maxSquads = 100;
+var squadInstances = []
+const squadStatus = {
+    DEPLOYING: "deploying",
+    DEPLOYED: "deployed",
+    RESTING: "resting",
+}
+
+class Squad extends ClickableModifier {
     constructor(mod, buttonref) {
         super(mod, buttonref);
         this.mod = mod;
         this.time = 0;
+        this.activationDelay = Math.random() * (30 - 15) + 15;  //Random integer between 15 and 30
         this.maxCooldown = 120;
-        this.maxDuration = 60;
+        // this.maxDuration = 60;
+        this.maxDuration = 120;
         this.modpersec = -1;
+        this.status = squadStatus.DEPLOYING;
+        squadInstances.push(this);
         setInterval(() => {
             this.update(0.066);
         }, 66)
-      }
+    }
     update(delta_time){
         if (!this.clicked) return;
         this.time += delta_time;
+        console.log(this.time + " " + this.activationDelay);
 
+        if (this.time >= this.activationDelay){
+            this.status = squadStatus.DEPLOYED
+        }
         
-        if (!this.isInCooldown()){
+        // if (!this.isInCooldown()){
+        if (this.status == squadStatus.DEPLOYED){
+            console.log("am doing stuff");
             this.mod += this.modpersec * delta_time;
         }
+        if (this.time >= this.activationDelay+this.maxDuration){
+            console.log("going to bed");
+            this.status = squadStatus.RESTING
+        }
+
     }
     isInCooldown(){
         let total = this.maxCooldown + this.maxDuration;
@@ -71,7 +91,7 @@ class Modifier {
         console.log(this.isInCooldown());
         return this.isInCooldown();
     }
-  }
+}
 
 class GruppoElettrogeno extends ClickableModifier{
       //so this thing activates, remains active for a while and then gets disabled (after 1 sec atm)
@@ -148,8 +168,8 @@ function initChart(){
 
 function initButtonsAndChart(){
     initChart();
-    initButton("button1");
-    initGruppoElettrogeno("button2");
+    //initButton("button1");
+    //initGruppoElettrogeno("button2");
     initTaskForce("button3");
 }
 
@@ -157,6 +177,10 @@ function initButton(buttonId){
     console.log(document.getElementById(buttonId));
     clickable = new Squad( 0, document.getElementById(buttonId));
     console.log(clickable.isClickable());
+}
+
+function sendSquad(buttonId){
+    clickable = new Squad( 0, document.getElementById(buttonId));
 }
 
 function initGruppoElettrogeno(buttonId){
