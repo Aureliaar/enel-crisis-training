@@ -64,6 +64,7 @@ class Squad extends ClickableModifier {
         this.maxCooldown = 120;
         // this.maxDuration = 60;
         this.maxDuration = 120;
+        this.restingDuration = 150;
         this.modpersec = -1;
         this.status = squadStatus.DEPLOYING;
         squadInstances.push(this);
@@ -86,9 +87,19 @@ class Squad extends ClickableModifier {
             console.log("am doing stuff");
             this.mod += this.modpersec * delta_time;
         }
-        if (this.time >= this.activationDelay+this.maxDuration){
+        if (this.time >= (this.activationDelay+this.maxDuration)){
             console.log("going to bed");
             this.status = squadStatus.RESTING;
+        }
+        if (this.time >= (this.activationDelay+this.maxDuration+this.restingDuration) ){
+            console.log("Back to ready");
+            globalMod += this.mod;
+            
+            const index = squadInstances.indexOf(this);
+            if (index > -1) {
+                squadInstances.splice(index, 1);
+            }
+            // TODO: actually delete this object, somehow, since in this shitty lang you can't
         }
 
     }
