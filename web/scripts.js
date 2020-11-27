@@ -37,6 +37,10 @@ constructor(mod, buttonref) {
 
 const maxSquads = 100; 
 var squadInstances = []
+var generatorInstances = []
+var taskForceInstances = []
+
+
 var globalMod = 0;
 
 const squadStatus = {
@@ -123,13 +127,22 @@ class TaskForce extends Squad{
     }
 }
 
-function calcMod(){
-    squadMod = 0;
-    for (var squad in squadInstances){
-        squadMod += squad.mod;
+function calcModFor(array){
+    var tempMod = 0;
+    for (var squad in array){
+        tempMod += squad.mod;
     }
-    return globalMod + squadMod;
+    return tempMod;
 }
+
+function calcTotalMod(){
+    var totalMod = 0;
+    var squadMod = calcModFor(squadInstances);
+    var genMod = calcModFor(generatorInstances);
+    var taskMod = calcModFor(taskForceInstances);
+    return squadMod + genMod + taskMod + globalMod;
+}
+
 function initChart(){
     var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
     var xAxis = ['0', '5', '10', '15', '20', '25', '30', '35', '40', '45']
