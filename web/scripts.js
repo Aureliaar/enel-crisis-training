@@ -10,19 +10,19 @@ class Modifier {
     }
 } 
 
-  class ClickableModifier extends Modifier {
+class ClickableModifier extends Modifier {
     
-    constructor(mod, buttonref) {
-        super(mod);
-        let that = this;
+constructor(mod, buttonref) {
+    super(mod);
+    let that = this;
 
-        this.mod = mod;
-        this.buttonref = buttonref
-        this.time = 0;
-        this.clicked = false;
-        buttonref.addEventListener('click', ()=>{ 
-            this.click();
-        })
+    this.mod = mod;
+    this.buttonref = buttonref
+    this.time = 0;
+    this.clicked = false;
+    buttonref.addEventListener('click', ()=>{ 
+        this.click();
+    })
         
     }
     click(){
@@ -37,6 +37,7 @@ class Modifier {
 
 const maxSquads = 100;
 var squadInstances = []
+var globalMod = 0;
 const squadStatus = {
     DEPLOYING: "deploying",
     DEPLOYED: "deployed",
@@ -114,6 +115,13 @@ class TaskForce extends Squad{
     }
 }
 
+function calcMod(){
+    squadMod = 0;
+    for (var squad in squadInstances){
+        squadMod += squad.mod;
+    }
+    return globalMod + squadMod;
+}
 function initChart(){
     var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
     var xAxis = ['0', '5', '10', '15', '20', '25', '30', '35', '40', '45']
