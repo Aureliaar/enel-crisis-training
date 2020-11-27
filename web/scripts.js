@@ -35,12 +35,19 @@ class Modifier {
     isClickable() {return true;}
 }
 
-const maxSquads = 100;
+const maxSquads = 100; 
 var squadInstances = []
+
 const squadStatus = {
     DEPLOYING: "deploying",
     DEPLOYED: "deployed",
     RESTING: "resting",
+}
+
+function updateCounters(){
+    document.getElementById("deployingSquads").innerHTML = (squadInstances.filter(squad => squad.status == squadStatus.DEPLOYING)).length;
+    document.getElementById("deployedSquads").innerHTML = (squadInstances.filter(squad => squad.status == squadStatus.DEPLOYED)).length;
+    document.getElementById("restingSquads").innerHTML = (squadInstances.filter(squad => squad.status == squadStatus.RESTING)).length;
 }
 
 class Squad extends ClickableModifier {
@@ -57,6 +64,7 @@ class Squad extends ClickableModifier {
         squadInstances.push(this);
         setInterval(() => {
             this.update(0.066);
+            updateCounters();
         }, 66)
     }
     update(delta_time){
@@ -65,7 +73,7 @@ class Squad extends ClickableModifier {
         console.log(this.time + " " + this.activationDelay);
 
         if (this.time >= this.activationDelay){
-            this.status = squadStatus.DEPLOYED
+            this.status = squadStatus.DEPLOYED;
         }
         
         // if (!this.isInCooldown()){
@@ -75,7 +83,7 @@ class Squad extends ClickableModifier {
         }
         if (this.time >= this.activationDelay+this.maxDuration){
             console.log("going to bed");
-            this.status = squadStatus.RESTING
+            this.status = squadStatus.RESTING;
         }
 
     }
@@ -171,6 +179,7 @@ function initButtonsAndChart(){
     //initButton("button1");
     //initGruppoElettrogeno("button2");
     initTaskForce("button3");
+    setInterval(function(){updateCounters();}, 66);
 }
 
 function initButton(buttonId){
