@@ -64,7 +64,7 @@ class Squad extends ClickableModifier {
         this.modpersec = -1;
         this.status = squadStatus.DEPLOYING;
         squadInstances.push(this);
-        setInterval(() => {
+        this.timer = setInterval(() => {
             this.update(0.066);
         }, 66)
     }
@@ -93,7 +93,7 @@ class Squad extends ClickableModifier {
             if (index > -1) {
                 squadInstances.splice(index, 1);
             }
-            // TODO: actually delete this object, somehow, since in this shitty lang you can't
+            clearInterval(this.timer);
         }
 
     }
