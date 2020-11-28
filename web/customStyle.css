@@ -1,0 +1,7 @@
+.counters_container > p {
+    display:inline;
+}
+
+button {
+    width: 105px;
+}
