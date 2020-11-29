@@ -43,7 +43,8 @@ function initChart(){
             graphValues.shift(); //removes the first element of the array
         }
     
-        graphValues.push(Math.floor((Math.random() * curveMaxVal) + 1)) //add elem at the end of the array
+        //graphValues.push(Math.floor((Math.random() * curveMaxVal) + 1)) //add elem at the end of the array
+        graphValues.push(globalMod)
         for (i=0; i<graphValues.length; i++){
             myChart.data.datasets[0].data[i] = graphValues[i];
         }
@@ -57,12 +58,25 @@ function updateCounters(){
     document.getElementById("deployingSquads").innerHTML = (squadInstances.filter(squad => squad.status == squadStatus.DEPLOYING)).length;
     document.getElementById("deployedSquads").innerHTML = (squadInstances.filter(squad => squad.status == squadStatus.DEPLOYED)).length;
     document.getElementById("restingSquads").innerHTML = (squadInstances.filter(squad => squad.status == squadStatus.RESTING)).length;
+    document.getElementById("readyTaskForces").innerHTML = maxTaskForces - taskForceInstances.length;
+    document.getElementById("deployingTaskForces").innerHTML = (taskForceInstances.filter(taskForce => taskForce.status == squadStatus.DEPLOYING)).length;
+    document.getElementById("deployedTaskForces").innerHTML = (taskForceInstances.filter(taskForce => taskForce.status == squadStatus.DEPLOYED)).length;
+    document.getElementById("restingTaskForces").innerHTML = (taskForceInstances.filter(taskForce => taskForce.status == squadStatus.RESTING)).length;
+    document.getElementById("readyGenerators").innerHTML = maxGenerators - generatorInstances.length;
+    document.getElementById("deployingGenerators").innerHTML = (generatorInstances.filter(generator => generator.status == squadStatus.DEPLOYING)).length;
+    document.getElementById("deployedGenerators").innerHTML = (generatorInstances.filter(generator => generator.status == squadStatus.DEPLOYED)).length;
 }
 
 function updateButtonStatus(){
     document.getElementById("taskForce").disabled = true;
-    if(level2Crisis== true && squadInstances.length > 50){
+    if(level2Crisis== true && squadInstances.length > 50 && taskForceInstances.length < maxTaskForces){
         document.getElementById("taskForce").disabled = false;
+    };
+    if( squadInstances.length == maxSquads){
+        document.getElementById("squad").disabled = true;
+    };
+    if(generatorInstances.length == maxGenerators){
+        document.getElementById("generator").disabled = true;
     }
     
 }

@@ -35,7 +35,9 @@ constructor(mod, buttonref) {
     isClickable() {return true;}
 }
 
-const maxSquads = 100; 
+var maxSquads = 100; 
+const maxGenerators = 30; 
+const maxTaskForces = 30;
 var level1Crisis = false;
 var level2Crisis = false;
 var squadInstances = []
@@ -63,7 +65,6 @@ class Squad extends ClickableModifier {
         this.restingDuration = 150;
         this.modpersec = -1;
         this.status = squadStatus.DEPLOYING;
-        squadInstances.push(this);
         this.timer = setInterval(() => {
             this.update(0.066);
         }, 66)
@@ -115,10 +116,23 @@ class GruppoElettrogeno extends ClickableModifier{
     constructor(mod, buttonref) {
         super(mod, buttonref);
         this.activationDelay = Math.random() * (60 - 30) + 30;  //Random integer between 30 and 60
+        this.status = squadStatus.DEPLOYING;
+        setInterval(() => {
+            this.update(0.066);
+        }, 66)
     }
-    click(){
-        super.click();
-        this.buttonref.disabled=true
+    update(delta_time){
+        if (!this.clicked) return;
+        this.time += delta_time;
+
+        if (this.time >= this.activationDelay){
+            this.status = squadStatus.DEPLOYED;
+        }
+        
+        if (this.status == squadStatus.DEPLOYED){
+            console.log("am doing stuff");
+            this.mod += this.modpersec * delta_time;
+        }
     }
 }
 
@@ -153,6 +167,18 @@ function initButton(buttonId){
 
 function sendSquad(buttonId){
     clickable = new Squad( 100, document.getElementById(buttonId));
+    squadInstances.push(clickable);
+}
+
+function sendTaskForce(buttonId){
+    clickable = new TaskForce( 100, document.getElementById(buttonId));
+    taskForceInstances.push(clickable);
+}
+
+function sendGenerator(buttonId){
+    clickable = new GruppoElettrogeno( 0, document.getElementById(buttonId));
+    generatorInstances.push(clickable);
+    maxSquads-=1
 }
 
 function initGruppoElettrogeno(buttonId){
@@ -166,12 +192,6 @@ function initTaskForce(buttonId){
     clickable = new TaskForce( 0, document.getElementById(buttonId));
 }
 
-// initButtons(function(){
-//     //curveMaxVal = curveMaxVal-200;
-//     console.log(document.getElementById("button1"));
-//     clickable = new ClickableModifier( 0, document.getElementById("button1"));
-//     //document.getElementById("button2").classList.add('Squad');
-// })
 function declareLvl1Crisis(){
     level1Crisis = true;
 }
