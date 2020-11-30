@@ -145,11 +145,8 @@ class TaskForce extends Squad{
 
 function calcModFor(array){
     var tempMod = 0;
-    if(array){
-        for (var squad in array){
-            console.log(squad.mod);
-            tempMod += squad.mod;
-        }
+    for (i=0; i<array.length; i++){
+        tempMod += array[i].mod;
     }
     console.log(tempMod);
     return tempMod;
@@ -180,7 +177,7 @@ function sendTaskForce(buttonId){
 }
 
 function sendGenerator(buttonId){
-    clickable = new GruppoElettrogeno( 0, document.getElementById(buttonId));
+    clickable = new GruppoElettrogeno( 1000, document.getElementById(buttonId));
     generatorInstances.push(clickable);
     maxSquads-=1
 }
