@@ -41,10 +41,11 @@ function initChart(){
     setInterval(function(){
         if (graphValues.length == xAxis.length){
             graphValues.shift(); //removes the first element of the array
-        }
+        };
     
         //graphValues.push(Math.floor((Math.random() * curveMaxVal) + 1)) //add elem at the end of the array
-        graphValues.push(globalMod)
+        graphValues.push(calcTotalMod());
+        //console.log(calcTotalMod());
         for (i=0; i<graphValues.length; i++){
             myChart.data.datasets[0].data[i] = graphValues[i];
         }

@@ -45,7 +45,7 @@ var generatorInstances = []
 var taskForceInstances = []
 
 
-var globalMod = 0;
+var globalMod = 10000;
 
 const squadStatus = {
     DEPLOYING: "deploying",
@@ -145,9 +145,13 @@ class TaskForce extends Squad{
 
 function calcModFor(array){
     var tempMod = 0;
-    for (var squad in array){
-        tempMod += squad.mod;
+    if(array){
+        for (var squad in array){
+            console.log(squad.mod);
+            tempMod += squad.mod;
+        }
     }
+    console.log(tempMod);
     return tempMod;
 }
 
@@ -161,12 +165,12 @@ function calcTotalMod(){
 
 function initButton(buttonId){
     console.log(document.getElementById(buttonId));
-    clickable = new Squad( 0, document.getElementById(buttonId));
+    clickable = new Squad( 1000, document.getElementById(buttonId));
     console.log(clickable.isClickable());
 }
 
 function sendSquad(buttonId){
-    clickable = new Squad( 100, document.getElementById(buttonId));
+    clickable = new Squad( 1000, document.getElementById(buttonId));
     squadInstances.push(clickable);
 }
 
