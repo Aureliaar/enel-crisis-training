@@ -195,8 +195,10 @@ function initTaskForce(buttonId){
 
 function declareLvl1Crisis(){
     level1Crisis = true;
+    document.getElementById("crisisLevel").innerHTML = "Emergency level 2";
 }
 
 function declareLvl2Crisis(){
     level2Crisis = true;
+    document.getElementById("crisisLevel").innerHTML = "Critical Emergency";
 }

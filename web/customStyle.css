@@ -1,4 +1,4 @@
-.counters_container > p {
+.counters_container > h3,p {
     display:inline;
 }
 
