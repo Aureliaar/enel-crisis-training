@@ -80,7 +80,7 @@ class Squad extends ClickableModifier {
         // if (!this.isInCooldown()){
         if (this.status == squadStatus.DEPLOYED){
             console.log("am doing stuff");
-            this.mod += this.modpersec * delta_time;
+            this.mod += this.modpersec * delta_time * calcSquadOvercrowdMod();
         }
         if (this.time >= (this.activationDelay+this.maxDuration)){
             console.log("going to bed");
@@ -151,7 +151,11 @@ function calcModFor(array){
     console.log(tempMod);
     return tempMod;
 }
+function calcSquadOvercrowdMod(){
+    var activeSquadsPerc = squadInstances.filter(squad => squad.status == squadStatus.DEPLOYED).length / maxSquads;
+    return activeSquadsPerc**2;
 
+}
 function calcTotalMod(){
     var totalMod = 0;
     var squadMod = calcModFor(squadInstances.filter(squad => squad.status == squadStatus.DEPLOYED));
@@ -167,17 +171,17 @@ function initButton(buttonId){
 }
 
 function sendSquad(buttonId){
-    clickable = new Squad( 1000, document.getElementById(buttonId));
+    clickable = new Squad( 0, document.getElementById(buttonId));
     squadInstances.push(clickable);
 }
 
 function sendTaskForce(buttonId){
-    clickable = new TaskForce( 100, document.getElementById(buttonId));
+    clickable = new TaskForce( 0, document.getElementById(buttonId));
     taskForceInstances.push(clickable);
 }
 
 function sendGenerator(buttonId){
-    clickable = new GruppoElettrogeno( 1000, document.getElementById(buttonId));
+    clickable = new GruppoElettrogeno( -100, document.getElementById(buttonId));
     generatorInstances.push(clickable);
     maxSquads-=1
 }
