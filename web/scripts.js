@@ -70,7 +70,6 @@ class Squad extends ClickableModifier {
         }, 66)
     }
     update(delta_time){
-        if (!this.clicked) return;
         this.time += delta_time;
 
         if (this.time >= this.activationDelay){
@@ -122,7 +121,6 @@ class GruppoElettrogeno extends ClickableModifier{
         }, 66)
     }
     update(delta_time){
-        if (!this.clicked) return;
         this.time += delta_time;
 
         if (this.time >= this.activationDelay){
