@@ -66,8 +66,8 @@ class Squad extends ClickableModifier {
         this.modpersec = -100;
         this.status = squadStatus.DEPLOYING;
         this.timer = setInterval(() => {
-            this.update(0.066);
-        }, 66)
+            this.update(0.33);
+        }, 330)
     }
     update(delta_time){
         this.time += delta_time;
@@ -78,16 +78,13 @@ class Squad extends ClickableModifier {
         
         // if (!this.isInCooldown()){
         if (this.status == squadStatus.DEPLOYED){
-            console.log("am doing stuff");
             this.mod += this.modpersec * delta_time * calcSquadOvercrowdMod();
         }
         if (this.time >= (this.activationDelay+this.maxDuration)){
-            console.log("going to bed");
+            globalMod += this.mod;
             this.status = squadStatus.RESTING;
         }
         if (this.time >= (this.activationDelay+this.maxDuration+this.restingDuration) ){
-            console.log("Back to ready");
-            globalMod += this.mod;
             
             const index = squadInstances.indexOf(this);
             if (index > -1) {
