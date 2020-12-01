@@ -1,7 +1,7 @@
 function initChart(){
     var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
     var xAxis = ['0', '5', '10', '15', '20', '25', '30', '35', '40', '45']
-    var graphValues = [639, 465, 493, 478, 589, 632, 674]
+    var graphValues = [639, 465, 493, 478, 589, 632, 674]//639, 465, 493, 478, 589, 632, 674
     var curveMaxVal = 600
 
     var chartData = {
@@ -35,7 +35,7 @@ function initChart(){
                         max: 180000,
                         min: 0,
                     }
-                }]
+                }],
             }
         }
     });
