@@ -45,7 +45,7 @@ var generatorInstances = []
 var taskForceInstances = []
 
 
-var globalMod = 10000;
+var globalMod = 180000;
 
 const squadStatus = {
     DEPLOYING: "deploying",
