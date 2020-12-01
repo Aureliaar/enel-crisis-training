@@ -112,6 +112,7 @@ class GruppoElettrogeno extends ClickableModifier{
     constructor(mod, buttonref) {
         super(mod, buttonref);
         this.activationDelay = Math.random() * (60 - 30) + 30;  //Random integer between 30 and 60
+        this.modpersec = -100;
         this.status = squadStatus.DEPLOYING;
         setInterval(() => {
             this.update(0.066);
@@ -126,7 +127,7 @@ class GruppoElettrogeno extends ClickableModifier{
         
         if (this.status == squadStatus.DEPLOYED){
             console.log("am doing stuff");
-            this.mod += this.modpersec * delta_time;
+            this.mod += this.modpersec * delta_time  * calcSquadOvercrowdMod();;
         }
     }
 }
@@ -141,9 +142,9 @@ class TaskForce extends Squad{
 function calcModFor(array){
     var tempMod = 0;
     for (i=0; i<array.length; i++){
+        console.log(tempMod + " - " + array[i].mod) ;
         tempMod += array[i].mod;
     }
-    console.log(tempMod);
     return tempMod;
 }
 function calcSquadOvercrowdMod(){
