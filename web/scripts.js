@@ -58,7 +58,7 @@ class Squad extends ClickableModifier {
         super(mod, buttonref);
         this.mod = mod;
         this.time = 0;
-        this.activationDelay = Math.random() * (30 - 15) + 15;  //Random integer between 15 and 30
+        this.activationDelay = 1    ; //Math.random() * (30 - 15) + 15;  //Random integer between 15 and 30
         this.maxCooldown = 120;
         // this.maxDuration = 60;
         this.maxDuration = 120;
@@ -152,7 +152,7 @@ function calcModFor(array){
     return tempMod;
 }
 function calcSquadOvercrowdMod(){
-    var activeSquadsPerc = squadInstances.filter(squad => squad.status == squadStatus.DEPLOYED).length / maxSquads;
+    var activeSquadsPerc = 1 - squadInstances.filter(squad => squad.status == squadStatus.DEPLOYED).length / maxSquads;
     return activeSquadsPerc**2;
 
 }
