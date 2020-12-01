@@ -63,7 +63,7 @@ class Squad extends ClickableModifier {
         // this.maxDuration = 60;
         this.maxDuration = 120;
         this.restingDuration = 150;
-        this.modpersec = -1;
+        this.modpersec = -100;
         this.status = squadStatus.DEPLOYING;
         this.timer = setInterval(() => {
             this.update(0.066);
@@ -150,8 +150,8 @@ function calcModFor(array){
     return tempMod;
 }
 function calcSquadOvercrowdMod(){
-    var activeSquadsPerc = 1 - squadInstances.filter(squad => squad.status == squadStatus.DEPLOYED).length / maxSquads;
-    return activeSquadsPerc**2;
+    var activeSquadsPerc = squadInstances.filter(squad => squad.status == squadStatus.DEPLOYED).length / maxSquads;
+    return 1 - activeSquadsPerc**2;
 
 }
 function calcTotalMod(){
