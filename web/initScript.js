@@ -13,7 +13,8 @@ function initChart(){
             backgroundColor: 'transparent',
             borderColor: colors[0],
             borderWidth: 4,
-            pointBackgroundColor: colors[0]
+            pointBackgroundColor: colors[0],
+            lineTension: 0.5,
         }]
     };
     var ctx = document.getElementById('myChart');

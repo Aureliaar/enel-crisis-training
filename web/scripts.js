@@ -154,9 +154,9 @@ function calcModFor(array){
 
 function calcTotalMod(){
     var totalMod = 0;
-    var squadMod = calcModFor(squadInstances);
-    var genMod = calcModFor(generatorInstances);
-    var taskMod = calcModFor(taskForceInstances);
+    var squadMod = calcModFor(squadInstances.filter(squad => squad.status == squadStatus.DEPLOYED));
+    var genMod = calcModFor(generatorInstances.filter(generator => generator.status == squadStatus.DEPLOYED));
+    var taskMod = calcModFor(taskForceInstances.filter(taskForce => taskForce.status == squadStatus.DEPLOYED));
     return squadMod + genMod + taskMod + globalMod;
 }
 
