@@ -1,33 +1,35 @@
 function initChart(){
     var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
-    var xAxis = ['0', '5', '10', '15', '20', '25', '30', '35', '40', '45']
+    var xAxis = ['0','3', '6', '9', '12', '15', '18', '21', '24', '27', '30', '33','36', '39', '42', '45', '48', "", "", "", ""]
     var graphValues = [639, 465, 493, 478, 589, 632, 674]//639, 465, 493, 478, 589, 632, 674
+    var graphScatterValues =  [];
     var curveMaxVal = 600
 
     var chartData = {
-        labels: xAxis,
-        datasets: [
-        {
-            label: '# Clients disconnected',
-            data: graphValues,
-            backgroundColor: 'transparent',
-            borderColor: colors[0],
-            borderWidth: 4,
-            pointBackgroundColor: colors[0],
-            lineTension: 0.5,
-        }]
-    };
+            labels: xAxis,
+            datasets: [
+            {
+                label: '# Clients disconnected',
+                data: graphScatterValues,
+                backgroundColor: 'transparent',
+                borderColor: colors[0],
+                showLine: true,
+                borderWidth: 4,
+                pointBackgroundColor: colors[0],
+                lineTension: 0.5,
+            }]
+        };
     var ctx = document.getElementById('myChart');
 
     var myChart = new Chart(ctx, {
-        type: 'line',
+        type: 'scatter',
         data: chartData,
         options: {
             elements: {
                 point:{
-                  radius: 0
+                    radius: 0,
                 }
-              },
+            },
             scales: {
                 yAxes: [{
                     ticks: {
@@ -36,19 +38,27 @@ function initChart(){
                         min: 0,
                     }
                 }],
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        max: 50,
+                        min: 0,
+                    }
+                }],
             }
         }
     });
+    var currentX= 0
     setInterval(function(){
         if (graphValues.length == xAxis.length){
             graphValues.shift(); //removes the first element of the array
         };
-    
-        //graphValues.push(Math.floor((Math.random() * curveMaxVal) + 1)) //add elem at the end of the array
-        graphValues.push(calcTotalMod());
+        
+        graphScatterValues.push({x: currentX, y: calcTotalMod()});
+        currentX += 0.053;
         //console.log(calcTotalMod());
-        for (i=0; i<graphValues.length; i++){
-            myChart.data.datasets[0].data[i] = graphValues[i];
+        for (i=0; i<graphScatterValues.length; i++){
+            myChart.data.datasets[0].data[i] = graphScatterValues[i];
         }
     
         myChart.update();
