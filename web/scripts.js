@@ -98,7 +98,7 @@ class Squad extends ClickableModifier {
         // this.maxDuration = 60;
         this.maxDuration = 120;
         this.restingDuration = 150;
-        this.modpersec = -100;
+        this.modpersec = -1;
         this.status = squadStatus.DEPLOYING;
 
     }
@@ -178,9 +178,13 @@ class Weather{
 
     }
     setWithDelay(status, delay_in_minutes){
-        setTimeout(() => {
+        setTimeout((new_status) => {
             this.status = status;
-        }, delay_in_minutes * 60 * 1000)
+            console.log(this.status);
+        }, delay_in_minutes * 60 * 1000, new_status)
+    }
+    getCurrentMod(){
+        
     }
 
 }

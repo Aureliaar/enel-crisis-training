@@ -43,7 +43,7 @@ function initChart(){
                     ticks: {
                         fontSize: 0,
                         beginAtZero: true,
-                        max: 50,
+                        max: 60,
                         min: 0,
                     }
                 }],
