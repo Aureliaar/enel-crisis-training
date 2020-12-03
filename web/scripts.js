@@ -170,3 +170,22 @@ setTimeout(() => {
 setTimeout(() => {
     new SelfStoppingModifier(0, 1000, 20000);
 }, 780 * 1000)
+
+function createNewsItem(){
+    let li = document.createElement('li');
+    let date = document.createElement('span');
+    date.className = "date";
+    date.textContent = "una banana";
+    let news = document.createElement('span');
+    news.className = "activity-text";
+    news.textContent = "una banana molto blu";
+    li.className = "feed-item";
+    li.appendChild(date);
+    li.appendChild(news);
+    return li;
+}
+
+function addNews(){
+    const newsList = document.querySelector('#newsFeed');
+    newsList.appendChild(createNewsItem());
+}
