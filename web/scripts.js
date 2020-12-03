@@ -62,9 +62,9 @@ function calcSquadOvercrowdMod(){
 }
 function calcTotalMod(){
     var totalMod = 0;
-    var squadMod = calcModFor(squadInstances.filter(squad => squad.status == squadStatus.DEPLOYED));
+    var squadMod = calcModFor(squadInstances.filter();
     var genMod = calcModFor(generatorInstances.filter(generator => generator.status == squadStatus.DEPLOYED));
-    var taskMod = calcModFor(taskForceInstances.filter(taskForce => taskForce.status == squadStatus.DEPLOYED));
+    var taskMod = calcModFor(taskForceInstances.filter();
     var hardcodedMod = calcModFor(hardcodedModInstances);
     return squadMod + genMod + taskMod + hardcodedMod + globalMod;
 }

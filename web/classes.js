@@ -65,32 +65,36 @@ class Squad extends ClickableModifier {
         this.status = squadStatus.DEPLOYING;
 
     }
-    update(delta_time){
+    destroy() {
+        globalMod += this.mod;
+        const index = squadInstances.indexOf(this);
+        if (index > -1) {
+            squadInstances.splice(index, 1);
+        }
+        clearInterval(this.timer);
+    }
+
+    update(delta_time) {
         this.time += delta_time;
 
-        if (this.time >= this.activationDelay){
+        if (this.time >= this.activationDelay && this.time < this.activationDelay + this.maxDuration) {
             this.status = squadStatus.DEPLOYED;
         }
-        
-        // if (!this.isInCooldown()){
-        if (this.status == squadStatus.DEPLOYED){
-            this.mod += this.modpersec * delta_time * calcSquadOvercrowdMod();
-        }
-        if (this.time >= (this.activationDelay+this.maxDuration)){
-            globalMod += this.mod;
+        if (this.time >= (this.activationDelay + this.maxDuration)) {
             this.status = squadStatus.RESTING;
         }
-        if (this.time >= (this.activationDelay+this.maxDuration+this.restingDuration) ){
-            
-            const index = squadInstances.indexOf(this);
-            if (index > -1) {
-                squadInstances.splice(index, 1);
-            }
-            clearInterval(this.timer);
+
+        if (this.time >= (this.activationDelay + this.maxDuration + this.restingDuration)) {
+            this.destroy()
+        }
+        if (this.status == squadStatus.DEPLOYED) {
+            this.mod += this.modpersec * delta_time * calcSquadOvercrowdMod();
         }
 
     }
+
 }
+
 
 class GruppoElettrogeno extends ClickableModifier{
     constructor(mod, buttonref) {
