@@ -35,3 +35,9 @@ canvas {
 #level2Crisis{
     width:120px;
 }
+
+.news-container{
+    height: 45vh;
+    overflow-y: scroll;
+    width: auto;
+}

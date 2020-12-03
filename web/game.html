@@ -10,11 +10,11 @@
         <script type="text/javascript" src="initScript.js"></script>
         <link href="customStyle.css" rel="stylesheet" type="text/css" />
         <!-- Bootstrap Css -->
-        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <link href="assets/css/bootstrap-dark.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
         <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- App Css-->
-        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="assets/css/app-dark.min.css" id="app-style" rel="stylesheet" type="text/css" />
     </head>
     <body onload="initButtonsAndChart()" data-layout="horizontal">
         <div id="layout-wrapper">
@@ -23,99 +23,80 @@
             <div class="main-content">
                 <div class="page-content">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-3">
-                                <div class="card">
-                                    <img class="card-img-top" src="assets/map_no_bg.png">
+                    <div class="row h-75">
+                        <div class="col-3">
+                            <div class="card h-50">
+                                <div class="card-title">
+                                    <H1>Crisis Level: </H1>
+                                </div>
+                                <div class="card-body">
+                                    <p id="crisisLevel">Emergency Level 1</p>
+                                    <br>
+                                    <button type="button" class="btn btn-warning waves-effect waves-light" id="level1Crisis" onclick="declareLvl1Crisis()">Declare Level 1 Crisis</button>
+                                    <button type="button" class="btn btn-danger waves-effect waves-light" id="level2Crisis" onclick="declareLvl2Crisis()">Declare Level 2 Crisis</button>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="card">
-                                    <div class="card-img-fluid" >
-                                        <img class="card-img-top" src="assets/backgroundgrid.png">
-                                        <div class="card-img-overlay"><div id="canvasContainer"><canvas id="myChart"></canvas></div></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="card">
-                                    <div class="card-title"><H1 >News Feed</H1></div>
-                                    <div class="card-body" data-spy="scroll" style="height: 250px;">
-                                        <p>Current mod: </p><p id="currentMod"></p>
-                                    </div>
+                            <div class="card h-50">
+                                <div class="card-body">
+                                    <div class="counters_container"><H3>Weather: </H3><p id="weatherStatus"></p></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-3"></div>
-                            <div class="col-6">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="container-fluid">
-                                            <div class="row text-center">
-                                                <div class="col-2">
-                                                    <button type="button" class="btn btn-primary waves-effect waves-light" id="squad" onclick="sendSquad(id)">Deploy Squad</button>
-                                                </div>
-                                                <div class="col-2">
-                                                    <button type="button" class="btn btn-primary waves-effect waves-light" id="generator" onclick="sendGenerator(id)">Deploy Generator</button>
-                                                </div>
-                                                <div class="col-2">
-                                                    <button type="button" class="btn btn-primary waves-effect waves-light" id="taskForce" onclick="sendTaskForce(id)">Deploy Task Force</button>
-                                                </div>
-                                                <div class="col-6" style="padding-left: 70px;">
-                                                    <button type="button" class="btn btn-warning waves-effect waves-light" id="level1Crisis" onclick="declareLvl1Crisis()">Declare Level 1 Crisis</button>
-                                                    <button type="button" class="btn btn-danger waves-effect waves-light" id="level2Crisis" onclick="declareLvl2Crisis()">Declare Level 2 Crisis</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="card-img-fluid" >
+                                    <img class="card-img-top" src="assets/backgroundgrid.png">
+                                    <div class="card-img-overlay"><div id="canvasContainer"><canvas id="myChart"></canvas></div></div>
                                 </div>
                             </div>
-                            <div class="col-3"></div>
+                            <div class="card">
+                                <div class= "card-text"></div>
+                            </div>
                         </div>
-                        <div class="row">
-                            <div class="col-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h2>Squads Status</h2>
-                                        <div class="counters_container"><p>Ready: </p><p id="readySquads">100</p></div>
-                                        <div class="counters_container"><p>Deploying: </p><p id="deployingSquads">0</p></div>
-                                        <div class="counters_container"><p>Deployed: </p><p id="deployedSquads">0</p></div>
-                                        <div class="counters_container"><p>Resting: </p><p id="restingSquads">0</p></div>
-                                    </div>
+                        <div class="col-3">
+                            <div class="card h-100">
+                                <div class="card-title"><H1 >News Feed</H1></div>
+                                <div class="card-body">
+                                    <div class="news-container"><p>Current mod: </p><p id="currentMod"></p></div>
                                 </div>
                             </div>
-                            <div class="col-3">
-                                <div class="card" style="height: 180px;">
-                                    <div class="card-body">
-                                        <h2>Generators Status</h2>
-                                        <div class="counters_container"><p>Ready: </p><p id="readyGenerators">30</p></div>
-                                        <div class="counters_container"><p>Deploying: </p><p id="deployingGenerators">0</p></div>
-                                        <div class="counters_container"><p>Deployed: </p><p id="deployedGenerators">0</p></div>
-                                    </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row h-25">
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2>Squads Status</h2>
+                                    <div class="counters_container"><p>Ready: </p><p id="readySquads">100</p></div>
+                                    <div class="counters_container"><p>Deploying: </p><p id="deployingSquads">0</p></div>
+                                    <div class="counters_container"><p>Deployed: </p><p id="deployedSquads">0</p></div>
+                                    <div class="counters_container"><p>Resting: </p><p id="restingSquads">0</p></div>
+                                    <button type="button" class="btn btn-primary waves-effect waves-light" id="squad" onclick="sendSquad(id)">Deploy Squad</button>
                                 </div>
                             </div>
-                            <div class="col-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h2>Task Forces Status</h2>
-                                        <div class="counters_container"><p>Ready: </p><p id="readyTaskForces">0</p></div>
-                                        <div class="counters_container"><p>Deploying: </p><p id="deployingTaskForces">0</p></div>
-                                        <div class="counters_container"><p>Deployed: </p><p id="deployedTaskForces">0</p></div>
-                                        <div class="counters_container"><p>Resting: </p><p id="restingTaskForces">0</p></div>
-                                    </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card" style="height: 180px;">
+                                <div class="card-body">
+                                    <h2>Generators Status</h2>
+                                    <div class="counters_container"><p>Ready: </p><p id="readyGenerators">30</p></div>
+                                    <div class="counters_container"><p>Deploying: </p><p id="deployingGenerators">0</p></div>
+                                    <div class="counters_container"><p>Deployed: </p><p id="deployedGenerators">0</p></div>
+                                    <button type="button" class="btn btn-primary waves-effect waves-light" id="generator" onclick="sendGenerator(id)">Deploy Generator</button>
                                 </div>
                             </div>
-                            <div class="col-3">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="counters_container"><H3>Crisis Level: </H3><p id="crisisLevel">Emergency Level 1</p></div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="counters_container"><H3>Weather: </H3><p id="weatherStatus"></p></div>
-                                    </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2>Task Forces Status</h2>
+                                    <div class="counters_container"><p>Ready: </p><p id="readyTaskForces">0</p></div>
+                                    <div class="counters_container"><p>Deploying: </p><p id="deployingTaskForces">0</p></div>
+                                    <div class="counters_container"><p>Deployed: </p><p id="deployedTaskForces">0</p></div>
+                                    <div class="counters_container"><p>Resting: </p><p id="restingTaskForces">0</p></div>
+                                    <button type="button" class="btn btn-primary waves-effect waves-light" id="taskForce" onclick="sendTaskForce(id)">Deploy Task Force</button>
                                 </div>
                             </div>
                         </div>
@@ -128,16 +109,4 @@
         <script src="assets/libs/metismenu/metisMenu.min.js"></script>
         <script src="assets/libs/simplebar/simplebar.min.js"></script>
         <script src="assets/libs/node-waves/waves.min.js"></script>
-
-        <!-- <script src="assets/libs/flot-charts/jquery.flot.js"></script>
-        <script src="assets/libs/flot-charts/jquery.flot.time.js"></script>
-        <script src="assets/libs/jquery.flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
-        <script src="assets/libs/flot-charts/jquery.flot.resize.js"></script>
-        <script src="assets/libs/flot-charts/jquery.flot.pie.js"></script>
-        <script src="assets/libs/flot-charts/jquery.flot.selection.js"></script>
-        <script src="assets/libs/flot-charts/jquery.flot.stack.js"></script>
-        <script src="assets/libs/flot.curvedLines/curvedLines.js"></script>
-        <script src="assets/libs/flot-charts/jquery.flot.crosshair.js"></script>
-        <script src="assets/js/pages/flot.init.js"></script>
-        <script src="assets/js/app.js"></script> -->
     </body>
