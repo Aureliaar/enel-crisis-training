@@ -9,3 +9,8 @@ button {
 p {
     font-size: 15px;
 }
+
+canvas{
+    background-image: url("assets/backgroundgrid.png");
+    background-repeat: no-repeat;
+}

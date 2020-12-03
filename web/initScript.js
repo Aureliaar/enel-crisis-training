@@ -9,9 +9,9 @@ function initChart(){
             labels: xAxis,
             datasets: [
             {
-                label: '# Clients disconnected',
                 data: graphScatterValues,
                 backgroundColor: 'transparent',
+                
                 borderColor: colors[0],
                 showLine: true,
                 borderWidth: 4,
