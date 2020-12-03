@@ -3,7 +3,7 @@
 }
 
 button {
-    width: 105px;
+    /*width: 105px;*/
 }
 
 p {
@@ -30,10 +30,10 @@ canvas {
 }
 
 #level1Crisis{
-    width:120px;
+    width:150px;
 }
 #level2Crisis{
-    width:120px;
+    width:150px;
 }
 
 .news-container{
