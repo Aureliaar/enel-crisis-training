@@ -87,6 +87,7 @@ function updateCounters(){
     document.getElementById("deployedGenerators").innerHTML = (generatorInstances.filter(generator => generator.status == squadStatus.DEPLOYED)).length;
 
     document.getElementById("currentMod").innerHTML = calcTotalMod();
+    document.getElementById("weatherStatus").innerHTML = WeatherInstance.status;
 }
 
 function updateButtonStatus(){
@@ -103,9 +104,10 @@ function updateButtonStatus(){
     }
     
 }
-
+var WeatherInstance;
 function initButtonsAndChart(){
     initChart();
+    WeatherInstance = new Weather("default");
     setInterval(function(){
         updateCounters();
         updateButtonStatus();
