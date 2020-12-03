@@ -28,6 +28,27 @@ class Weather extends Modifier {
     constructor() {
         super(0);
         this.status = weather.ACCEPTABLE;
+        setWithDelay(weather.PERFECT,	 	1.2);
+        setWithDelay(weather.BAD,	 		1.5);
+        setWithDelay(weather.CATASTROPHIC,	0.8);
+        setWithDelay(weather.ACCEPTABLE,	1.3);
+        setWithDelay(weather.BAD,	 		0.8);
+        setWithDelay(weather.ACCEPTABLE,	1.2);
+        setWithDelay(weather.CATASTROPHIC,	0.9);
+        setWithDelay(weather.PERFECT,	 	0.7);
+        setWithDelay(weather.ACCEPTABLE,	1.5);
+        setWithDelay(weather.PERFECT,	 	1.1);
+        setWithDelay(weather.BAD,	 		1);
+        setWithDelay(weather.ACCEPTABLE,	1.4);
+        setWithDelay(weather.PERFECT,	 	0.5);
+        setWithDelay(weather.ACCEPTABLE,	1.4);
+        setWithDelay(weather.CATASTROPHIC,	0.7);
+        setWithDelay(weather.BAD,	 		1);
+        setWithDelay(weather.PERFECT,	 	1.2);
+        setWithDelay(weather.ACCEPTABLE,	1.5);
+        setWithDelay(weather.PERFECT,	 	1.3);
+        setWithDelay(weather.BAD,	 		1.3);
+        setWithDelay(weather.PERFECT,	 	0.9);
 
     }
     setWithDelay(status, delay_in_minutes) {
