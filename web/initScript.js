@@ -33,6 +33,8 @@ function initChart(){
             scales: {
                 yAxes: [{
                     ticks: {
+                        display:false,
+                        fontSize: 12,
                         beginAtZero: true,
                         max: 180000,
                         min: 0,
@@ -40,6 +42,8 @@ function initChart(){
                 }],
                 xAxes: [{
                     ticks: {
+                        display:false,
+                        fontSize: 12,
                         beginAtZero: true,
                         max: 50,
                         min: 0,
@@ -82,6 +86,7 @@ function updateCounters(){
 }
 
 function updateButtonStatus(){
+    document.getElementById("level2Crisis").disabled = !level1Crisis;
     document.getElementById("taskForce").disabled = true;
     if(level2Crisis== true && squadInstances.length > 50 && taskForceInstances.length < maxTaskForces){
         document.getElementById("taskForce").disabled = false;
