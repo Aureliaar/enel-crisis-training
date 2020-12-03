@@ -27,35 +27,36 @@ const weather = {
 class Weather extends Modifier {
     constructor() {
         super(0);
-        this.status = weather.ACCEPTABLE;
-        setWithDelay(weather.PERFECT,	 	1.2);
-        setWithDelay(weather.BAD,	 		1.5);
-        setWithDelay(weather.CATASTROPHIC,	0.8);
-        setWithDelay(weather.ACCEPTABLE,	1.3);
-        setWithDelay(weather.BAD,	 		0.8);
-        setWithDelay(weather.ACCEPTABLE,	1.2);
-        setWithDelay(weather.CATASTROPHIC,	0.9);
-        setWithDelay(weather.PERFECT,	 	0.7);
-        setWithDelay(weather.ACCEPTABLE,	1.5);
-        setWithDelay(weather.PERFECT,	 	1.1);
-        setWithDelay(weather.BAD,	 		1);
-        setWithDelay(weather.ACCEPTABLE,	1.4);
-        setWithDelay(weather.PERFECT,	 	0.5);
-        setWithDelay(weather.ACCEPTABLE,	1.4);
-        setWithDelay(weather.CATASTROPHIC,	0.7);
-        setWithDelay(weather.BAD,	 		1);
-        setWithDelay(weather.PERFECT,	 	1.2);
-        setWithDelay(weather.ACCEPTABLE,	1.5);
-        setWithDelay(weather.PERFECT,	 	1.3);
-        setWithDelay(weather.BAD,	 		1.3);
-        setWithDelay(weather.PERFECT,	 	0.9);
+        this.status = weather.CATASTROPHIC;
+        this.setWithDelay(weather.ACCEPTABLE, 1);
+        this.setWithDelay(weather.PERFECT, 2.2);
+        this.setWithDelay(weather.BAD, 3.7);
+        this.setWithDelay(weather.CATASTROPHIC, 4.5);
+        this.setWithDelay(weather.ACCEPTABLE, 5.8);
+        this.setWithDelay(weather.BAD, 6.6);
+        this.setWithDelay(weather.ACCEPTABLE, 7.8);
+        this.setWithDelay(weather.CATASTROPHIC, 8.7);
+        this.setWithDelay(weather.PERFECT, 9.4);
+        this.setWithDelay(weather.ACCEPTABLE, 10.9);
+        this.setWithDelay(weather.PERFECT, 12.);
+        this.setWithDelay(weather.BAD, 13.);
+        this.setWithDelay(weather.ACCEPTABLE, 14.4);
+        this.setWithDelay(weather.PERFECT, 14.9);
+        this.setWithDelay(weather.ACCEPTABLE, 16.3);
+        this.setWithDelay(weather.CATASTROPHIC, 17.);
+        this.setWithDelay(weather.BAD, 18.);
+        this.setWithDelay(weather.PERFECT, 19.2);
+        this.setWithDelay(weather.ACCEPTABLE, 20.7);
+        this.setWithDelay(weather.PERFECT, 22.);
+        this.setWithDelay(weather.BAD, 23.3);
+        this.setWithDelay(weather.PERFECT, 24.2);
 
     }
     setWithDelay(status, delay_in_minutes) {
-        setTimeout((new_status) => {
+        setTimeout(() => {
             this.status = status;
             console.log(this.status);
-        }, delay_in_minutes * 60 * 1000, new_status)
+        }, delay_in_minutes * 60 * 1000 )
     }
     getCurrentMod() {
         switch (this.status) {
@@ -63,7 +64,22 @@ class Weather extends Modifier {
             case weather.BAD: return 0.3;
             case weather.ACCEPTABLE: return 1;
             case weather.PERFECT: return 1.5;
+        }
     }
+    update(delta_time){
+        let mult = 0;
+        switch (this.status) {
+            case weather.CATASTROPHIC: 
+                mult = 100;
+                break;
+            case weather.BAD:
+                mult = 20;
+                break;
+            case weather.ACCEPTABLE:
+                mult = 5;
+                break;                
+        }
+        this.mod += delta_time * mult;
     }
 
 }
@@ -71,7 +87,6 @@ class Weather extends Modifier {
 function calcModFor(array){
     var tempMod = 0;
     for (i=0; i<array.length; i++){
-        console.log(tempMod + " - " + array[i].mod) ;
         tempMod += array[i].mod;
     }
     return tempMod;
@@ -87,8 +102,21 @@ function calcTotalMod(){
     var genMod = calcModFor(generatorInstances.filter(generator => generator.status == squadStatus.DEPLOYED));
     var taskMod = calcModFor(taskForceInstances);
     var hardcodedMod = calcModFor(hardcodedModInstances);
-    return squadMod + genMod + taskMod + hardcodedMod + globalMod;
+    return squadMod + genMod + taskMod + hardcodedMod + globalMod + WeatherInstance.mod;
 }
+
+function calcLineeGuaste(){
+    let totalMod = calcTotalMod() / 1000;
+    if (totalMod > 110 ){
+        return 110 + (totalMod - 110 ) / 7; 
+    }
+    if (totalMod > 100){
+        return 100 + (totalMod - 100);
+    }
+    return (totalMod - 50 )  * (65 / 50);
+}
+
+
 
 function initButton(buttonId){
     console.log(document.getElementById(buttonId));
@@ -134,9 +162,9 @@ function declareLvl2Crisis(){
 }
 
 
-new SelfStoppingModifier(0, 6000, 30000);
+new SelfStoppingModifier(0, 5800, 30000);
 setTimeout(() => {
-    new SelfStoppingModifier(0, -3000, 30000);
+    new SelfStoppingModifier(0, -2900, 30000);
 }, 30000)
 
 setTimeout(() => {

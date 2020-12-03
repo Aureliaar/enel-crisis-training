@@ -33,7 +33,6 @@ class SelfStoppingModifier extends Modifier{
         }, duration)
     }
     update(delta_time){
-        console.log(this.mod_per_sec);
         this.mod += this.mod_per_sec * delta_time;
     }
 }
@@ -88,7 +87,7 @@ class Squad extends ClickableModifier {
             this.destroy()
         }
         if (this.status == squadStatus.DEPLOYED) {
-            this.mod += this.modpersec * delta_time * calcSquadOvercrowdMod();
+            this.mod += this.modpersec * delta_time * calcSquadOvercrowdMod() * WeatherInstance.getCurrentMod();
         }
 
     }

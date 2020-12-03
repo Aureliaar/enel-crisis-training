@@ -57,13 +57,17 @@ function initChart(){
         }
     });
     var currentX= 0
+    var lastTimestamp = Date.now();
     setInterval(function(){
         if (graphValues.length == xAxis.length){
             graphValues.shift(); //removes the first element of the array
         };
         
         graphScatterValues.push({x: currentX, y: calcTotalMod()});
-        currentX += 0.002777;
+        let delta = (Date.now() - lastTimestamp) / 1000.0;
+        lastTimestamp = Date.now();
+        let totalSeconds = 15 * 60;
+        currentX += delta * 50.0 / totalSeconds ; 
         //console.log(calcTotalMod());
         for (i=0; i<graphScatterValues.length; i++){
             myChart.data.datasets[0].data[i] = graphScatterValues[i];
