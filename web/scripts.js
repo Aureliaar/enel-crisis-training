@@ -3,12 +3,40 @@ class Modifier {
         let that = this;
         this.mod = mod;
         this.time = 0;
+        this.lastUpdateStamp = Date.now();
+        this.timer = setInterval(() => {
+            this.tick()
+        }, 330)
+    }
+    tick(){
+        let now = Date.now();
+        let delta =  now - this.lastUpdateStamp;
+        this.update(delta / 1000);
+        this.lastUpdateStamp = now;
     }
     update(delta_time){
         this.time = this.time + delta_time;
 
     }
+
 } 
+
+class SelfStoppingModifier extends Modifier{
+    constructor(base_mod, mod_per_sec, duration) {
+        super(base_mod);
+        this.mod_per_sec = mod_per_sec;
+        hardcodedModInstances.push(this);
+        
+        setTimeout(() => {
+            clearInterval(this.timer);
+
+        }, duration)
+    }
+    update(delta_time){
+        console.log(this.mod_per_sec);
+        this.mod += this.mod_per_sec * delta_time;
+    }
+}
 
 class ClickableModifier extends Modifier {
     
@@ -40,12 +68,13 @@ const maxGenerators = 30;
 const maxTaskForces = 30;
 var level1Crisis = false;
 var level2Crisis = false;
-var squadInstances = []
-var generatorInstances = []
-var taskForceInstances = []
+var squadInstances = [];
+var generatorInstances = [];
+var taskForceInstances = [];
+var hardcodedModInstances = [];
 
 
-var globalMod = 180000;
+var globalMod = 0;
 
 const squadStatus = {
     DEPLOYING: "deploying",
@@ -53,6 +82,12 @@ const squadStatus = {
     RESTING: "resting",
 }
 
+const weather = {
+    CATASTROPHIC: "catastrophic",
+    BAD: "bad",
+    ACCEPTABLE: "acceptable",
+    PERFECT: "perfect",
+}
 class Squad extends ClickableModifier {
     constructor(mod, buttonref) {
         super(mod, buttonref);
@@ -65,9 +100,7 @@ class Squad extends ClickableModifier {
         this.restingDuration = 150;
         this.modpersec = -100;
         this.status = squadStatus.DEPLOYING;
-        this.timer = setInterval(() => {
-            this.update(0.33);
-        }, 330)
+
     }
     update(delta_time){
         this.time += delta_time;
@@ -139,6 +172,19 @@ class TaskForce extends Squad{
     }
 }
 
+class Weather{
+    constructor(defaultStatus) {
+        this.status = defaultStatus;
+
+    }
+    setWithDelay(status, delay_in_minutes){
+        setTimeout(() => {
+            this.status = status;
+        }, delay_in_minutes * 60 * 1000)
+    }
+
+}
+
 function calcModFor(array){
     var tempMod = 0;
     for (i=0; i<array.length; i++){
@@ -157,7 +203,8 @@ function calcTotalMod(){
     var squadMod = calcModFor(squadInstances.filter(squad => squad.status == squadStatus.DEPLOYED));
     var genMod = calcModFor(generatorInstances.filter(generator => generator.status == squadStatus.DEPLOYED));
     var taskMod = calcModFor(taskForceInstances.filter(taskForce => taskForce.status == squadStatus.DEPLOYED));
-    return squadMod + genMod + taskMod + globalMod;
+    var hardcodedMod = calcModFor(hardcodedModInstances);
+    return squadMod + genMod + taskMod + hardcodedMod + globalMod;
 }
 
 function initButton(buttonId){
@@ -202,3 +249,13 @@ function declareLvl2Crisis(){
     level2Crisis = true;
     document.getElementById("crisisLevel").innerHTML = "Critical Emergency";
 }
+
+
+new SelfStoppingModifier(0, 6000, 30000);
+setTimeout(() => {
+    new SelfStoppingModifier(0, -3000, 30000);
+}, 30000)
+
+setTimeout(() => {
+    new SelfStoppingModifier(0, 1000, 20000);
+}, 780 * 1000)

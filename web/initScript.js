@@ -59,14 +59,14 @@ function initChart(){
         };
         
         graphScatterValues.push({x: currentX, y: calcTotalMod()});
-        currentX += 0.053;
+        currentX += 0.002777;
         //console.log(calcTotalMod());
         for (i=0; i<graphScatterValues.length; i++){
             myChart.data.datasets[0].data[i] = graphScatterValues[i];
         }
     
         myChart.update();
-    }, 600)
+    }, 50)
 }
 
 function updateCounters(){
