@@ -107,7 +107,7 @@ function updateButtonStatus(){
 var WeatherInstance;
 function initButtonsAndChart(){
     initChart();
-    WeatherInstance = new Weather("default");
+    WeatherInstance = new Weather();
     setInterval(function(){
         updateCounters();
         updateButtonStatus();

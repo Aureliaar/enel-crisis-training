@@ -25,9 +25,9 @@ const weather = {
 }
 
 class Weather extends Modifier {
-    constructor(defaultStatus) {
+    constructor() {
         super(0);
-        this.status = defaultStatus;
+        this.status = weather.ACCEPTABLE;
 
     }
     setWithDelay(status, delay_in_minutes) {
@@ -62,9 +62,9 @@ function calcSquadOvercrowdMod(){
 }
 function calcTotalMod(){
     var totalMod = 0;
-    var squadMod = calcModFor(squadInstances.filter();
+    var squadMod = calcModFor(squadInstances);
     var genMod = calcModFor(generatorInstances.filter(generator => generator.status == squadStatus.DEPLOYED));
-    var taskMod = calcModFor(taskForceInstances.filter();
+    var taskMod = calcModFor(taskForceInstances);
     var hardcodedMod = calcModFor(hardcodedModInstances);
     return squadMod + genMod + taskMod + hardcodedMod + globalMod;
 }
