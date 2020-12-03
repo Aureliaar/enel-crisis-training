@@ -9,12 +9,12 @@ function initChart(){
             labels: xAxis,
             datasets: [
             {
-                label: '# Clients disconnected',
                 data: graphScatterValues,
                 backgroundColor: 'transparent',
+                
                 borderColor: colors[0],
                 showLine: true,
-                borderWidth: 4,
+                //borderWidth: 4,
                 pointBackgroundColor: colors[0],
                 lineTension: 0.5,
             }]
@@ -33,8 +33,7 @@ function initChart(){
             scales: {
                 yAxes: [{
                     ticks: {
-                        display:false,
-                        fontSize: 12,
+                        fontSize: 0,
                         beginAtZero: true,
                         max: 180000,
                         min: 0,
@@ -42,14 +41,19 @@ function initChart(){
                 }],
                 xAxes: [{
                     ticks: {
-                        display:false,
-                        fontSize: 12,
+                        fontSize: 0,
                         beginAtZero: true,
                         max: 50,
                         min: 0,
                     }
                 }],
-            }
+            },
+            legend: {
+                display: false
+            },
+            tooltips: {
+                enabled: false
+           }
         }
     });
     var currentX= 0

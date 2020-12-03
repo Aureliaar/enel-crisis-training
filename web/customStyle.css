@@ -9,3 +9,22 @@ button {
 p {
     font-size: 15px;
 }
+
+/* canvas{
+} */
+
+#canvasContainer{
+    position: relative;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 2.3%;
+    padding-top: 3.2%;
+    height: 100%;
+}
+
+canvas {
+    
+    height: 100% !important;
+    width: 100% !important;
+    /* margin: 8%; */
+}
