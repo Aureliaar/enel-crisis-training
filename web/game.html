@@ -17,11 +17,15 @@
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="assets/css/app-dark.min.css" id="app-style" rel="stylesheet" type="text/css" />
-    <title>Enel Crisis App - Temp Title</title>
+    <title>Enel Crisis Simulator</title>
 </head>
 
 <body onload="initButtonsAndChart()" data-layout="horizontal">
-    <div id="preloader" style="display: none;"><div id="status" style="display: none;"><div class="spinner"></div></div></div>
+    <div id="preloader" style="display: none;">
+        <div id="status" style="display: none;">
+            <div class="spinner"></div>
+        </div>
+    </div>
     <div id="layout-wrapper">
         <header id="page-topbar">
             <!-- start page title -->
@@ -29,8 +33,10 @@
                 <div class="container-fluid">
                     <div class="page-title-content">
                         <div class="row align-items-center">
-                            <div class="col-sm-6">
-                                <h4>Enel Crisis App - Temp Title</h4>
+                            <div class="col-sm-6">                                
+                                <span class="logo-sm">
+                                    <img src="assets/Enel_logo_2016.png" alt="" height="32"> <h4 style="padding-top: 10px;"> Crisis Simulator</h4>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -80,19 +86,102 @@
                         </div>
                         <div class="col-3">
                             <div class="card h-100">
-                                <h1 class="card-title mb-6">News Feed</h1>
+                                <h1 class="card-header mt-0 font-size-20">News Feed</h1>
                                 <div class="card-body">
-                                    <p>Current mod: </p><p id="currentMod"></p>
-                                    <div class="news-container">
-                                        <ol class="activity-feed mb-0" id="newsFeed">
-                                        </ol>
+                                    <div class="scrollbar scrollbar-primary">
+                                        <div class="force-overflow">
+                                            <!--<p>Current mod: </p>
+                                            <p id="currentMod"></p>-->
+                                            <ol class="activity-feed mb-0" id="newsFeed">
+                                                <li class="feed-item">
+                                                    <span class="date">Sep 25</span>
+                                                    <span class="activity-text">Responded to need “Volunteer
+                                                        Activities”</span>
+                                                </li>
+                                                <li class="feed-item">
+                                                    <span class="date">Sep 25</span>
+                                                    <span class="activity-text">Responded to need “Volunteer
+                                                        Activities”</span>
+                                                </li>
+                                                <li class="feed-item">
+                                                    <span class="date">Sep 25</span>
+                                                    <span class="activity-text">Responded to need “Volunteer
+                                                        Activities”</span>
+                                                </li>
+                                                <li class="feed-item">
+                                                    <span class="date">Sep 25</span>
+                                                    <span class="activity-text">Responded to need “Volunteer
+                                                        Activities”</span>
+                                                </li>
+                                                <li class="feed-item">
+                                                    <span class="date">Sep 25</span>
+                                                    <span class="activity-text">Responded to need “Volunteer
+                                                        Activities”</span>
+                                                </li>
+                                                <li class="feed-item">
+                                                    <span class="date">Sep 25</span>
+                                                    <span class="activity-text">Responded to need “Volunteer
+                                                        Activities”</span>
+                                                </li>
+                                                <li class="feed-item">
+                                                    <span class="date">Sep 25</span>
+                                                    <span class="activity-text">Responded to need “Volunteer
+                                                        Activities”</span>
+                                                </li>
+                                                <li class="feed-item">
+                                                    <span class="date">Sep 25</span>
+                                                    <span class="activity-text">Responded to need “Volunteer
+                                                        Activities”</span>
+                                                </li>
+                                                <li class="feed-item">
+                                                    <span class="date">Sep 25</span>
+                                                    <span class="activity-text">Responded to need “Volunteer
+                                                        Activities”</span>
+                                                </li>
+                                                <li class="feed-item">
+                                                    <span class="date">Sep 25</span>
+                                                    <span class="activity-text">Responded to need “Volunteer
+                                                        Activities”</span>
+                                                </li>
+                                                <li class="feed-item">
+                                                    <span class="date">Sep 25</span>
+                                                    <span class="activity-text">Responded to need “Volunteer
+                                                        Activities”</span>
+                                                </li>
+                                                <li class="feed-item">
+                                                    <span class="date">Sep 25</span>
+                                                    <span class="activity-text">Responded to need “Volunteer
+                                                        Activities”</span>
+                                                </li>
+                                                <li class="feed-item">
+                                                    <span class="date">Sep 25</span>
+                                                    <span class="activity-text">Responded to need “Volunteer
+                                                        Activities”</span>
+                                                </li>
+                                                <li class="feed-item">
+                                                    <span class="date">Sep 25</span>
+                                                    <span class="activity-text">Responded to need “Volunteer
+                                                        Activities”</span>
+                                                </li>
+                                                <li class="feed-item">
+                                                    <span class="date">Sep 25</span>
+                                                    <span class="activity-text">Responded to need “Volunteer
+                                                        Activities”</span>
+                                                </li>
+                                                <li class="feed-item">
+                                                    <span class="date">Sep 25</span>
+                                                    <span class="activity-text">Responded to need “Volunteer
+                                                        Activities”</span>
+                                                </li>
+                                            </ol>
+                                        </div>
                                     </div>
-                                    <!-- <button type="button" onclick="addNews()"> add news</button> -->
                                 </div>
-                                </div>
+                                <!-- <button type="button" onclick="addNews()"> add news</button> -->
                             </div>
                         </div>
                     </div>
+
                     <br>
                     <br>
                     <div class="row h-25">
@@ -187,9 +276,11 @@
                 </div>
             </div>
         </div>
-        <script src="assets/libs/jquery/jquery.min.js"></script>
-        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
-        <script src="assets/libs/simplebar/simplebar.min.js"></script>
-        <script src="assets/libs/node-waves/waves.min.js"></script>
+    </div>
+
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="assets/libs/node-waves/waves.min.js"></script>
 </body>
