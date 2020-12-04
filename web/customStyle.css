@@ -29,16 +29,17 @@ canvas {
     /* margin: 8%; */
 }
 
-#level1Crisis{
-    width:150px;
-}
-#level2Crisis{
+.btn-larger{
     width:150px;
 }
 
 .news-container{
     width: 100%;
     height: 100%;
+}
+
+.page-content{
+    padding-bottom: 0px !important;
 }
 
 .scrollbar {
