@@ -99,7 +99,7 @@ class GruppoElettrogeno extends ClickableModifier{
     constructor(mod, buttonref) {
         super(mod, buttonref);
         this.activationDelay = Math.random() * (60 - 30) + 30;  //Random integer between 30 and 60
-        this.modpersec = -100;
+        this.modpersec = 0;
         this.status = squadStatus.DEPLOYING;
         setInterval(() => {
             this.update(0.066);
