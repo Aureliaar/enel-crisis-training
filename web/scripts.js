@@ -171,21 +171,21 @@ setTimeout(() => {
     new SelfStoppingModifier(0, 1000, 20000);
 }, 780 * 1000)
 
-function createNewsItem(){
+function createNewsItem(timestamp, message){
     let li = document.createElement('li');
     let date = document.createElement('span');
     date.className = "date";
-    date.textContent = "una banana";
+    date.textContent = timestamp;
     let news = document.createElement('span');
     news.className = "activity-text";
-    news.textContent = "una banana molto blu";
+    news.textContent = message;
     li.className = "feed-item";
     li.appendChild(date);
     li.appendChild(news);
     return li;
 }
 
-function addNews(){
+function addNews(timestamp, message){
     const newsList = document.querySelector('#newsFeed');
-    newsList.appendChild(createNewsItem());
+    newsList.appendChild(createNewsItem(timestamp, message));
 }

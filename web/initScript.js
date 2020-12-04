@@ -92,11 +92,12 @@ function updateCounters(){
 
     //document.getElementById("currentMod").innerHTML = calcTotalMod();
     document.getElementById("weatherStatus").innerHTML = WeatherInstance.status;
+    document.getElementById("timer").innerHTML = Math.floor((SecondsOnPage/60)) + 'm ' + (SecondsOnPage % 60) + 's ';
 }
 
 function updateButtonStatus(){
     document.getElementById("level2Crisis").disabled = !level1Crisis;
-    document.getElementById("taskForce").disabled = true;
+    
     if(level2Crisis== true && squadInstances.length > 50 && taskForceInstances.length < maxTaskForces){
         document.getElementById("taskForce").disabled = false;
     };
@@ -108,12 +109,29 @@ function updateButtonStatus(){
     }
     
 }
+function disableUnitButtons(){
+    document.getElementById("generator").disabled = true;
+    document.getElementById("squad").disabled = true;
+    document.getElementById("taskForce").disabled = true;
+};
+function enableUnitButtons(){
+    document.getElementById("generator").disabled = false;
+    document.getElementById("squad").disabled = false;
+};
 var WeatherInstance;
+var SecondsOnPage = 0;
 function initButtonsAndChart(){
     initChart();
+    disableUnitButtons();
     WeatherInstance = new Weather();
     setInterval(function(){
         updateCounters();
         updateButtonStatus();
     }, 66);
+    setInterval(function(){
+        SecondsOnPage += 1
+    }, 1000);
+    setTimeout(function(){
+        enableUnitButtons();
+    }, 60000);
 }
