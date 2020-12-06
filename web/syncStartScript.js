@@ -18,6 +18,9 @@ function checkTime() {
     // var s = d.getSeconds();
 
     //if(h == hParam && m == mParam && s == sParam) return window.location='game.html';
+    //var utcDateToDate = new Date;
+    document.getElementById("missingMinutes").innerHTML =  Math.floor((paramUtcDate - utcDate) / 60000);
+    document.getElementById("missingSeconds").innerHTML =  (((paramUtcDate - utcDate) % 60000) / 1000).toFixed(0);
     
     if(paramUtcDate<= utcDate ){return window.location='game.html';} 
 }
