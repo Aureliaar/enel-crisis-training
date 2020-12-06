@@ -11,12 +11,16 @@ var intervalId = window.setInterval(checkTime, 500);
 
 function checkTime() {
 
-    var d = new Date();
-    var utcDate = Date.UTC(d.getFullYear(), d.getMonth(), d.getDay(), d.getMinutes(), d.getSeconds());
+    var date = new Date();
+    var utcDate = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
     // var h = d.getHours();
     // var m = d.getMinutes();
     // var s = d.getSeconds();
 
     //if(h == hParam && m == mParam && s == sParam) return window.location='game.html';
-    if(paramUtcDate>= utcDate ){return window.location='game.html';} 
+    //var utcDateToDate = new Date;
+    document.getElementById("missingMinutes").innerHTML =  Math.floor((paramUtcDate - utcDate) / 60000);
+    document.getElementById("missingSeconds").innerHTML =  (((paramUtcDate - utcDate) % 60000) / 1000).toFixed(0);
+    
+    if(paramUtcDate<= utcDate ){return window.location='game.html';} 
 }
