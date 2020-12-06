@@ -101,12 +101,8 @@ function updateButtonStatus(){
     if(level2Crisis== true && squadInstances.length > 50 && taskForceInstances.length < maxTaskForces){
         document.getElementById("taskForce").disabled = false;
     };
-    if( squadInstances.length == maxSquads){
-        document.getElementById("squad").disabled = true;
-    };
-    if(generatorInstances.length == maxGenerators){
-        document.getElementById("generator").disabled = true;
-    }
+    document.getElementById("squad").disabled = squadInstances.length == maxSquads;
+    document.getElementById("generator").disabled = generatorInstances.length == maxGenerators;
     
 }
 function disableUnitButtons(){
