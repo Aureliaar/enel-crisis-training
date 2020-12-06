@@ -28,28 +28,18 @@ class Weather extends Modifier {
     constructor() {
         super(0);
         this.status = weather.CATASTROPHIC;
-        this.setWithDelay(weather.ACCEPTABLE, 1);
-        this.setWithDelay(weather.PERFECT, 2.2);
-        this.setWithDelay(weather.BAD, 3.7);
-        this.setWithDelay(weather.CATASTROPHIC, 4.5);
-        this.setWithDelay(weather.ACCEPTABLE, 5.8);
-        this.setWithDelay(weather.BAD, 6.6);
-        this.setWithDelay(weather.ACCEPTABLE, 7.8);
-        this.setWithDelay(weather.CATASTROPHIC, 8.7);
-        this.setWithDelay(weather.PERFECT, 9.4);
-        this.setWithDelay(weather.ACCEPTABLE, 10.9);
-        this.setWithDelay(weather.PERFECT, 12.);
-        this.setWithDelay(weather.BAD, 13.);
-        this.setWithDelay(weather.ACCEPTABLE, 14.4);
-        this.setWithDelay(weather.PERFECT, 14.9);
-        this.setWithDelay(weather.ACCEPTABLE, 16.3);
-        this.setWithDelay(weather.CATASTROPHIC, 17.);
-        this.setWithDelay(weather.BAD, 18.);
-        this.setWithDelay(weather.PERFECT, 19.2);
-        this.setWithDelay(weather.ACCEPTABLE, 20.7);
-        this.setWithDelay(weather.PERFECT, 22.);
-        this.setWithDelay(weather.BAD, 23.3);
-        this.setWithDelay(weather.PERFECT, 24.2);
+        this.setWithDelay(weather.ACCEPTABLE, 1.4);
+        this.setWithDelay(weather.PERFECT, 4.1);
+        this.setWithDelay(weather.CATASTROPHIC, 6.1);
+        this.setWithDelay(weather.BAD, 8.1);
+        this.setWithDelay(weather.ACCEPTABLE, 9.7);
+        this.setWithDelay(weather.PERFECT, 12);
+        this.setWithDelay(weather.CATASTROPHIC, 13);
+        this.setWithDelay(weather.BAD, 14.6);
+        this.setWithDelay(weather.PERFECT, 16.6);
+        this.setWithDelay(weather.ACCEPTABLE, 19.1);
+        this.setWithDelay(weather.PERFECT, 22.1);
+        this.setWithDelay(weather.BAD, 24);
 
     }
     setWithDelay(status, delay_in_minutes) {
@@ -169,7 +159,7 @@ setTimeout(() => {
 
 setTimeout(() => {
     new SelfStoppingModifier(0, 1000, 20000);
-}, 780 * 1000)
+}, 420 * 1000)
 
 function createNewsItem(timestamp, message){
     let li = document.createElement('li');

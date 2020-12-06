@@ -69,7 +69,7 @@ class Squad extends ClickableModifier {
         const index = squadInstances.indexOf(this);
         if (index > -1) {
             squadInstances.splice(index, 1);
-        }
+        }   
         clearInterval(this.timer);
     }
 
@@ -100,6 +100,7 @@ class GruppoElettrogeno extends ClickableModifier{
         super(mod, buttonref);
         this.activationDelay = Math.random() * (60 - 30) + 30;  //Random integer between 30 and 60
         this.modpersec = 0;
+        this.mod = Math.round(Math.random()) * 400 + 100;
         this.status = squadStatus.DEPLOYING;
         setInterval(() => {
             this.update(0.066);
