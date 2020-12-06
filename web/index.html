@@ -12,7 +12,7 @@
                 console.log("non utc date: " + date);
                 dateutc = Date.UTC(date.getFullYear(), date.getMonth(), date.getDay(), hours, minutes, 0);
                 console.log("utc date: " + dateutc);
-                document.getElementById("generatedURL").innerHTML = "/waitingroom.html?utcDate="+dateutc; //+hours+"&m="+minutes+"&s=0"
+                document.getElementById("generatedURL").innerHTML = "/waitingroom.html?utcDate="+dateutc;
             }
         </script>
 
@@ -21,7 +21,7 @@
         <h1>Choose start time: </h1>
         <input type="time" id="chooseTime">
         <button onclick="setStartTime()" type=submit> OK </button>
-        <h1>Past this URL to the participants: </h1>
+        <h1>Forward the following URL to the participants: </h1>
         <span id="generatedURL"></span>
     </body>
 </html>

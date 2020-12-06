@@ -98,11 +98,9 @@ function updateCounters(){
 function updateButtonStatus(){
     document.getElementById("level2Crisis").disabled = !level1Crisis;
     
-    if(level2Crisis== true && squadInstances.length > 50 && taskForceInstances.length < maxTaskForces){
-        document.getElementById("taskForce").disabled = false;
-    };
-    document.getElementById("squad").disabled = squadInstances.length == maxSquads;
-    document.getElementById("generator").disabled = generatorInstances.length == maxGenerators;
+    document.getElementById("taskForce").disabled = !(level2Crisis == true && squadInstances.length > 50 && taskForceInstances.length < maxTaskForces)
+    document.getElementById("squad").disabled = squadInstances.length == maxSquads || SecondsOnPage < 60;
+    document.getElementById("generator").disabled = generatorInstances.length == maxGenerators || SecondsOnPage < 60;
     
 }
 function disableUnitButtons(){
