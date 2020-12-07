@@ -68,6 +68,7 @@ function initChart(){
         lastTimestamp = Date.now();
         let totalSeconds = 15 * 60;
         currentX += delta * 56.5 / totalSeconds ; 
+        if (currentX > 54) {return;}
         SecondsOnPage += delta;
         for (i=0; i<graphScatterValues.length; i++){
             myChart.data.datasets[0].data[i] = graphScatterValues[i];

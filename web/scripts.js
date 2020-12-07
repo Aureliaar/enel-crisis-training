@@ -151,16 +151,19 @@ function initTaskForce(buttonId){
 
 function declareLvl1Crisis(){
     level1Crisis = true;
+    crisis1time = realToSimulatedTime(SecondsOnPage);
     document.getElementById("crisisLevel").innerHTML = "Emergency level 1";
 }
 
 function declareLvl2Crisis(){
     level2Crisis = true;
+    crisis2time = realToSimulatedTime(SecondsOnPage);
     document.getElementById("crisisLevel").innerHTML = "Emergency level 2";
 }
 
 function declareEmergency(){
     emergency = true;
+    crisis3time = realToSimulatedTime(SecondsOnPage);
     document.getElementById("crisisLevel").innerHTML = "Critical Emergency";
 }
 
@@ -216,4 +219,16 @@ setTimeout(() => {
     addNews("The supply lines are stretched, and failure is cascading throughout the system!");
 
 }, 420 * 1000)
+setTimeout(() => {
+    addNews("Your shift is over. Please report to your superior with the following results: ");
+    addNews("CLIENTS STILL DISCONNECTED: "+calcTotalMod());
+    addNews("Squads used: " + (squadsUsed + taskForcesUsed));
+    addNews("Generators used: "+ gensUsed);
+    addNews("Crisis level 1 declaration time: "+crisis1time);
+    addNews("Crisis level 2 declaration time: "+crisis2time);
+    addNews("Emergency State declaration time: "+crisis3time);
+
+
+
+}, 16 * 60 * 1000)
 new NoiseMod(0);
