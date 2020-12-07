@@ -111,12 +111,21 @@ function updateCat(category, instances, max){
 }
 
 function updateBars(status, cat, value, max){
-    $('#'+status+cat+'Bar').attr('aria-valuenow', value).css('width', ((value/max)*100)+"%");
+    percentVal = ((value/max)*100);
+    $('#'+status+cat+'Bar').attr('aria-valuenow', value).css('width', percentVal+"%");
+    $('#'+status+cat+'Bar').removeClass("bg-warning");
+    $('#'+status+cat+'Bar').removeClass("bg-danger");
+    if (percentVal <= 50 && percentVal > 25){
+        $('#'+status+cat+'Bar').addClass("bg-warning");
+    } else if (percentVal <= 25){
+        $('#'+status+cat+'Bar').addClass("bg-danger");
+    }
 }
 
 function updateButtonStatus(){
-    document.getElementById("level2Crisis").disabled = !level1Crisis;
-    document.getElementById("level3Crisis").disabled = !level2Crisis;
+    document.getElementById("level1Crisis").disabled = level1Crisis ;
+    document.getElementById("level2Crisis").disabled = !level1Crisis || level2Crisis;
+    document.getElementById("level3Crisis").disabled = !level2Crisis || emergency;
     
     document.getElementById("taskForce").disabled = !(level2Crisis == true && squadInstances.length > 50 && taskForceInstances.length < maxTaskForces)
     document.getElementById("squad").disabled = squadInstances.length == maxSquads || SecondsOnPage < 60;
