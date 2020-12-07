@@ -213,5 +213,7 @@ setTimeout(() => {
 }, 61000)
 setTimeout(() => {
     new SelfStoppingModifier(0, 1000, 20000);
+    addNews("The supply lines are stretched, and failure is cascading throughout the system!");
+
 }, 420 * 1000)
 new NoiseMod(0);
