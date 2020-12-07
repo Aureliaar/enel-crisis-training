@@ -92,7 +92,7 @@ function updateCounters(){
 
     
     document.getElementById("timer").innerHTML = simulatedTimeString()
-    document.getElementById("lineeGuaste").innerHTML = squadInstances.length + taskForceInstances.length + " / " + Math.floor(calcLineeGuaste());
+    document.getElementById("lineeGuaste").innerHTML = (squadInstances.length + taskForceInstances.length) / Math.floor(calcLineeGuaste());
 
 }
 

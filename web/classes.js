@@ -36,7 +36,7 @@ class NoiseMod extends Modifier {
             this.spike();
         }, 5000)
         setTimeout(() => {
-            this.threshold = 3000;
+            this.threshold = 2000;
             this.timeScale = 2;
             this.spike();
         }, 60000)
@@ -44,15 +44,17 @@ class NoiseMod extends Modifier {
 
     }
     spike(){
+        if (this.spikeCooldown > 0) {return;}
         this.modpersec = Math.sign(this.mod) * -1 * (0.5 + Math.random()/2) * this.threshold / this.timeScale;
-        this.timeToNextSwap = 0.5 + Math.random()/2 * this.timeScale;
+        this.timeToNextSwap = 0.2 + Math.random() * this.timeScale;
+        this.spikeCooldown = 0.5;
     }
     update(delta_time){
         if (Math.abs(this.mod) > this.threshold * this.timeToNextSwap ){
             this.spike()
         }
         this.mod += this.modpersec * delta_time;
-        console.log(this.mod + "  " + this.modpersec);
+        this.spikeCooldown -= delta_time;
     }
 }
 
@@ -95,7 +97,7 @@ class Squad extends ClickableModifier {
         // this.maxDuration = 60;
         this.maxDuration = 120;
         this.restingDuration = 150;
-        this.modpersec = -2;
+        this.modpersec = -2.5;
         this.status = squadStatus.DEPLOYING;
         this.name = "Squad";
         //addNews(this.name + " deployed");

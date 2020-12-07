@@ -205,11 +205,12 @@ addNews("Watch this space for further information on what is happening in the ar
 new SelfStoppingModifier(0, 5800, 30000);
 setTimeout(() => {
     new SelfStoppingModifier(0, -2900, 30000);
-    addNews("AUTOMATIC AND REMOTE RESPONSES ENGAGED");
-}, 30000)
+    addNews("AUTOMATIC RESPONSES ACTIVATING");
+}, 31000)
 setTimeout(() => {
+    addNews("REMOTE CONTROLS ENGAGED");
     addNews("Squads and Generators are now available");
-}, 60000)
+}, 61000)
 setTimeout(() => {
     new SelfStoppingModifier(0, 1000, 20000);
 }, 420 * 1000)
