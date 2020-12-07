@@ -161,15 +161,11 @@ setTimeout(() => {
     new SelfStoppingModifier(0, 1000, 20000);
 }, 420 * 1000)
 
-function createNewsItem(timer, message){
+function createNewsItem(message){
     let li = document.createElement('li');
     let date = document.createElement('span');
     date.className = "activity-text";
-    if (timer != ""){
-        date.textContent = timer;
-    } else {
-        date.textContent = document.getElementById("timer").innerHTML.valueOf();
-    }
+    date.textContent = document.getElementById("timer").innerHTML.valueOf();
     let news = document.createElement('span');
     news.className = "activity-text";
     news.textContent = ' - ' + message;
@@ -179,7 +175,7 @@ function createNewsItem(timer, message){
     return li;
 }
 
-function addNews(timer, message){
+function addNews(message){
     const newsList = document.querySelector('#newsFeed');
-    newsList.appendChild(createNewsItem(timer, message));
+    newsList.appendChild(createNewsItem(message));
 }
