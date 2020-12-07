@@ -67,8 +67,10 @@
                             </div>
                             <div class="card h-50">
                                 <h5 class="card-header mt-0 font-size-20"> <i class="fas fa-cloud-sun"></i> Weather</h5>
-                                <div class="card-body">
-                                    <p id="weatherStatus"></p>
+                                <div class="card-body text-center">
+                                    <h5>Current Weather Conditions</h5>
+                                    <h6 id="weatherStatus"></h6>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -130,31 +132,31 @@
                         <div class="col-4">
                             <div class="card">
                                 <h5 class="card-header mt-0 font-size-20"> <i class="fas fa-users"></i> Squad Status</h5>
-                                <div class="card-body">
+                                <div class="card-body" style="padding-bottom: 0px !important;">
                                     <div class="row text-center">
                                         <div class="col-3">
-                                            <p class="card-text text-muted">Ready: </p>
+                                            <p class="card-text text-info">Ready: </p>
                                             <h5 class="mb-2 font-size-18" id="readySquads">100</h5>
                                             <div class="progress mb-4">
-                                                <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 30px;"></div>
+                                                <div class="progress-bar" id="readySquadsBar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 30px;"></div>
                                             </div>
                                         </div>
                                         <div class="col-3">
-                                            <p class="card-text text-muted">Deploying: </p>
+                                            <p class="card-text text-warning">Deploying: </p>
                                             <h5 class="mb-2 font-size-18" id="deployingSquads">100</h5>
                                             <div class="progress mb-4">
                                                 <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 30px;"></div>
                                             </div>
                                         </div>
                                         <div class="col-3">
-                                            <p class="card-text text-muted">Deployed: </p>
+                                            <p class="card-text text-success">Active: </p>
                                             <h5 class="mb-2 font-size-18" id="deployedSquads">100</h5>
                                             <div class="progress mb-4">
                                                 <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 30px;"></div>
                                             </div>
                                         </div>
                                         <div class="col-3">
-                                            <p class="card-text text-muted">Resting: </p>
+                                            <p class="card-text text-danger">Resting: </p>
                                             <h5 class="mb-2 font-size-18" id="restingSquads">100</h5>
                                             <div class="progress mb-4">
                                                 <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 30px;"></div>
@@ -162,8 +164,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body text-center">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light" id="squad"
+                                <div class="card-body text-center" style="padding-top: 0px !important;">
+                                    <button type="button" class="btn btn-primary btn-lg waves-effect waves-light" id="squad"
                                         onclick="sendSquad(id)">Deploy Squad</button>
                                 </div>
                             </div>
@@ -172,24 +174,24 @@
                         <div class="col-4">
                             <div class="card">
                                 <h5 class="card-header mt-0 font-size-20"> <i class="fas fa-car-battery"></i> Generator Status</h5>
-                                <div class="card-body">
+                                <div class="card-body" style="padding-bottom: 0px !important;">
                                     <div class="row text-center">
                                         <div class="col-4">
-                                            <p class="card-text text-muted">Ready: </p>
+                                            <p class="card-text text-info">Ready: </p>
                                             <h5 class="mb-2 font-size-18" id="readyGenerators">100</h5>
                                             <div class="progress mb-4">
                                                 <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 30px;"></div>
                                             </div>
                                         </div>
                                         <div class="col-4">
-                                            <p class="card-text text-muted">Deploying: </p>
+                                            <p class="card-text text-warning">Deploying: </p>
                                             <h5 class="mb-2 font-size-18" id="deployingGenerators">100</h5>
                                             <div class="progress mb-4">
                                                 <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 30px;"></div>
                                             </div>
                                         </div>
                                         <div class="col-4">
-                                            <p class="card-text text-muted">Deployed: </p>
+                                            <p class="card-text text-success">Active: </p>
                                             <h5 class="mb-2 font-size-18" id="deployedGenerators">100</h5>
                                             <div class="progress mb-4">
                                                 <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 30px;"></div>
@@ -197,8 +199,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body text-center">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light"
+                                <div class="card-body text-center" style="padding-top: 0px !important;">
+                                    <button type="button" class="btn btn-primary btn-lg waves-effect waves-light"
                                         id="generator" onclick="sendGenerator(id)">Deploy Generator</button>
                                 </div>
                             </div>
@@ -207,41 +209,40 @@
                         <div class="col-4">
                             <div class="card">
                                 <h5 class="card-header mt-0 font-size-20"> <i class="fas fa-users"></i> Task Forces Status</h5>
-                                <div class="card-body">
+                                <div class="card-body" style="padding-bottom: 0px !important;">
                                     <div class="row text-center">
                                         <div class="col-3">
-                                            <p class="card-text text-muted">Ready: </p>
+                                            <p class="card-text text-info">Ready: </p>
                                             <h5 class="mb-2 font-size-18" id="readyTaskForces">100</h5>
                                             <div class="progress mb-4">
                                                 <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 30px;"></div>
                                             </div>
                                         </div>
                                         <div class="col-3">
-                                            <p class="card-text text-muted">Deploying: </p>
+                                            <p class="card-text text-warning">Deploying: </p>
                                             <h5 class="mb-2 font-size-18" id="deployingTaskForces">100</h5>
                                             <div class="progress mb-4">
                                                 <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 30px;"></div>
                                             </div>
                                         </div>
                                         <div class="col-3">
-                                            <p class="card-text text-muted">Deployed: </p>
+                                            <p class="card-text text-success">Active: </p>
                                             <h5 class="mb-2 font-size-18" id="deployedTaskForces">100</h5>
                                             <div class="progress mb-4">
                                                 <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 30px;"></div>
                                             </div>
                                         </div>
                                         <div class="col-3">
-                                            <p class="card-text text-muted">Resting: </p>
+                                            <p class="card-text text-danger">Resting: </p>
                                             <h5 class="mb-2 font-size-18" id="restingTaskForces">100</h5>
                                             <div class="progress mb-4">
                                                 <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 30px;"></div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-                                <div class="card-body text-center">
-                                    <button type="button" class="btn btn-primary waves-effect waves-light"
+                                <div class="card-body text-center" style="padding-top: 0px !important;">
+                                    <button type="button" class="btn btn-primary btn-lg waves-effect waves-light"
                                         id="taskForce" onclick="sendTaskForce(id)">Deploy Task Force</button>
                                 </div>
                             </div>

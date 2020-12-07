@@ -104,20 +104,10 @@ function updateButtonStatus(){
     document.getElementById("generator").disabled = generatorInstances.length == maxGenerators || squadInstances.length == maxSquads || SecondsOnPage < 60;
     
 }
-function disableUnitButtons(){
-    document.getElementById("generator").disabled = true;
-    document.getElementById("squad").disabled = true;
-    document.getElementById("taskForce").disabled = true;
-};
-function enableUnitButtons(){
-    document.getElementById("generator").disabled = false;
-    document.getElementById("squad").disabled = false;
-};
 var WeatherInstance;
 var SecondsOnPage = 0;
 function initButtonsAndChart(){
     initChart();
-    disableUnitButtons();
     WeatherInstance = new Weather();
     setInterval(function(){
         updateCounters();
