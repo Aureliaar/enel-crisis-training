@@ -68,7 +68,7 @@ function initChart(){
         lastTimestamp = Date.now();
         let totalSeconds = 15 * 60;
         currentX += delta * 50.0 / totalSeconds ; 
-        //console.log(calcTotalMod());
+        SecondsOnPage += delta;
         for (i=0; i<graphScatterValues.length; i++){
             myChart.data.datasets[0].data[i] = graphScatterValues[i];
         }
@@ -92,7 +92,7 @@ function updateCounters(){
 
     //document.getElementById("currentMod").innerHTML = calcTotalMod();
     document.getElementById("weatherStatus").innerHTML = WeatherInstance.status;
-    document.getElementById("timer").innerHTML = Math.floor((SecondsOnPage/60)) + 'm ' + (SecondsOnPage % 60) + 's ';
+    document.getElementById("timer").innerHTML = Math.floor((SecondsOnPage/60)).toFixed(0) + 'm ' + (SecondsOnPage % 60).toFixed(0) + 's ';
     document.getElementById("lineeGuaste").innerHTML = squadInstances.length + taskForceInstances.length + " / " + Math.floor(calcLineeGuaste());
 }
 
@@ -123,9 +123,7 @@ function initButtonsAndChart(){
         updateCounters();
         updateButtonStatus();
     }, 66);
-    setInterval(function(){
-        SecondsOnPage += 1
-    }, 1000);
+
     setTimeout(function(){
         enableUnitButtons();
         alertify.message('TELECOMANDI ED AUTOMATISMI IN CORSO');

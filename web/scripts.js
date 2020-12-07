@@ -52,7 +52,7 @@ class Weather extends Modifier {
         setTimeout(() => {
             addNews("Weather is now "+status);
             this.status = status;
-        }, delay_in_minutes * 60 * 1000 )
+        }, delay_in_minutes * 30 * 1000 )
     }
     getCurrentMod() {
         switch (this.status) {
@@ -176,6 +176,12 @@ function createNewsItem(message){
 function addNews(message){
     const newsList = document.querySelector('#newsFeed');
     newsList.appendChild(createNewsItem(message));
+}
+
+function realToSimulatedTime(seconds){
+    let first_minute = Math.max(seconds, 60);
+    let other = Math.max(0, seconds-60);
+
 }
 
 new SelfStoppingModifier(0, 5800, 30000);

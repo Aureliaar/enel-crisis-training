@@ -7,6 +7,7 @@ class Modifier {
         this.timer = setInterval(() => {
             this.tick()
         }, 330)
+        this.register_cost();
     }
     tick(){
         let now = Date.now();
@@ -18,6 +19,7 @@ class Modifier {
         this.time = this.time + delta_time;
 
     }
+    register_cost(){}
 
 } 
 
@@ -60,10 +62,16 @@ class Squad extends ClickableModifier {
         // this.maxDuration = 60;
         this.maxDuration = 120;
         this.restingDuration = 150;
-        this.modpersec = -1;
+        this.modpersec = -2;
         this.status = squadStatus.DEPLOYING;
         this.name = "Squad";
+        addNews(this.name + " deployed");
 
+
+
+    }
+    register_cost(){
+        squadsUsed += 1;
     }
     destroy() {
         addNews(this.name +  "ready again");
@@ -79,11 +87,11 @@ class Squad extends ClickableModifier {
         this.time += delta_time;
 
         if (this.status == squadStatus.DEPLOYING && this.time >= this.activationDelay && this.time < this.activationDelay + this.maxDuration) {
-            addNews(this.name + " deploying");
+            addNews(this.name + " deployed");
             this.status = squadStatus.DEPLOYED;
         }
         if (this.status == squadStatus.DEPLOYED && this.time >= (this.activationDelay + this.maxDuration)) {
-            addNews(this.name + " deployed");
+            addNews(this.name + " resting");
             this.status = squadStatus.RESTING;
         }
 
@@ -110,6 +118,9 @@ class GruppoElettrogeno extends ClickableModifier{
             this.update(0.066);
         }, 66)
     }
+    register_cost(){
+        gensUsed += 1;
+    }
     update(delta_time){
         this.time += delta_time;
 
@@ -124,5 +135,8 @@ class TaskForce extends Squad{
     constructor(mod, buttonref) {
         super(mod, buttonref);
         this.activationDelay = 120;
+    }
+    register_cost(){
+        taskForcesUsed += 1;
     }
 }
