@@ -24,10 +24,10 @@ const squadStatus = {
 }
 
 const weather = {
-    CATASTROPHIC: "catastrophic",
-    BAD: "bad",
-    ACCEPTABLE: "acceptable",
-    PERFECT: "perfect",
+    CATASTROPHIC: "Catastrophic",
+    BAD: "Adverse",
+    ACCEPTABLE: "Calm",
+    PERFECT: "Optimal",
 }
 
 class Weather extends Modifier {
