@@ -138,7 +138,7 @@ function updateButtonStatus(){
     document.getElementById("level2Crisis").disabled = emergency;
     document.getElementById("level3Crisis").disabled = emergency;
     
-    document.getElementById("taskForce").disabled = !(level2Crisis == true && squadInstances.length > 50 && taskForceInstances.length < maxTaskForces)
+    document.getElementById("taskForce").disabled = !((level2Crisis == true || emergency == true) && squadInstances.length > 50 && taskForceInstances.length < maxTaskForces)
     document.getElementById("squad").disabled = squadInstances.length == maxSquads || SecondsOnPage < 60;
     document.getElementById("generator").disabled = generatorInstances.length == maxGenerators || squadInstances.length == maxSquads || SecondsOnPage < 60;
     

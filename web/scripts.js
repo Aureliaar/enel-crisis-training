@@ -152,19 +152,19 @@ function initTaskForce(buttonId){
 function declareLvl1Crisis(){
     level1Crisis = true;
     crisis1time = realToSimulatedTime(SecondsOnPage);
-    document.getElementById("crisisLevel").innerHTML = "Emergency level 1";
+    document.getElementById("crisisLevel").innerHTML = "Level 1 Emergency";
 }
 
 function declareLvl2Crisis(){
     level2Crisis = true;
     crisis2time = realToSimulatedTime(SecondsOnPage);
-    document.getElementById("crisisLevel").innerHTML = "Emergency level 2";
+    document.getElementById("crisisLevel").innerHTML = "Level 2 Emergency";
 }
 
 function declareEmergency(){
     emergency = true;
     crisis3time = realToSimulatedTime(SecondsOnPage);
-    document.getElementById("crisisLevel").innerHTML = "Critical Emergency";
+    document.getElementById("crisisLevel").innerHTML = "Crisis Status";
 }
 
 
