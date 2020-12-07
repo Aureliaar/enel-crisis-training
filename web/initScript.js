@@ -131,9 +131,12 @@ function updateBars(status, cat, value, max){
 }
 
 function updateButtonStatus(){
-    document.getElementById("level1Crisis").disabled = level1Crisis ;
-    document.getElementById("level2Crisis").disabled = !level1Crisis || level2Crisis;
-    document.getElementById("level3Crisis").disabled = !level2Crisis || emergency;
+    // document.getElementById("level1Crisis").disabled = level1Crisis ;
+    // document.getElementById("level2Crisis").disabled = !level1Crisis || level2Crisis;
+    // document.getElementById("level3Crisis").disabled = !level2Crisis || emergency;
+    document.getElementById("level1Crisis").disabled = level2Crisis || emergency ;
+    document.getElementById("level2Crisis").disabled = emergency;
+    document.getElementById("level3Crisis").disabled = emergency;
     
     document.getElementById("taskForce").disabled = !(level2Crisis == true && squadInstances.length > 50 && taskForceInstances.length < maxTaskForces)
     document.getElementById("squad").disabled = squadInstances.length == maxSquads || SecondsOnPage < 60;

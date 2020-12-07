@@ -177,4 +177,13 @@ class TaskForce extends Squad{
     register_cost(){
         taskForcesUsed += 1;
     }
+    destroy() {
+        //addNews(this.name +  "ready again");
+        globalMod += this.mod;
+        const index = taskForceInstances.indexOf(this);
+        if (index > -1) {
+            taskForceInstances.splice(index, 1);
+        }   
+        clearInterval(this.timer);
+    }
 }
