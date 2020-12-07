@@ -95,16 +95,16 @@ function updateCat(category, instances, max){
     document.getElementById("deployed"+category).innerHTML = (instances.filter(squad => squad.status == squadStatus.DEPLOYED)).length;
     if(document.getElementById("resting"+category)){
         document.getElementById("resting"+category).innerHTML = (instances.filter(squad => squad.status == squadStatus.RESTING)).length;
-        updateBars("resting", category, instances.filter(squad => squad.status == squadStatus.RESTING).length);
+        updateBars("resting", category, instances.filter(squad => squad.status == squadStatus.RESTING).length, max);
     }
-    updateBars("ready", category, max - instances.length);
-    updateBars("deploying", category, instances.filter(squad => squad.status == squadStatus.DEPLOYING).length);
-    updateBars("deployed", category, instances.filter(squad => squad.status == squadStatus.DEPLOYED).length);
+    updateBars("ready", category, max - instances.length, max);
+    updateBars("deploying", category, instances.filter(squad => squad.status == squadStatus.DEPLOYING).length, max);
+    updateBars("deployed", category, instances.filter(squad => squad.status == squadStatus.DEPLOYED).length, max);
     
 }
 
-function updateBars(status, cat, value){
-    $('#'+status+cat+'Bar').attr('aria-valuenow', value).css('width', value);
+function updateBars(status, cat, value, max){
+    $('#'+status+cat+'Bar').attr('aria-valuenow', value).css('width', ((value/max)*100)+"%");
 }
 
 function updateButtonStatus(){
