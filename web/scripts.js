@@ -3,6 +3,7 @@ const maxGenerators = 30;
 const maxTaskForces = 30;
 var level1Crisis = false;
 var level2Crisis = false;
+var emergency = false;
 var squadInstances = [];
 var generatorInstances = [];
 var taskForceInstances = [];
@@ -149,11 +150,16 @@ function initTaskForce(buttonId){
 
 function declareLvl1Crisis(){
     level1Crisis = true;
-    document.getElementById("crisisLevel").innerHTML = "Emergency level 2";
+    document.getElementById("crisisLevel").innerHTML = "Emergency level 1";
 }
 
 function declareLvl2Crisis(){
     level2Crisis = true;
+    document.getElementById("crisisLevel").innerHTML = "Emergency level 2";
+}
+
+function declareEmergency(){
+    emergency = true;
     document.getElementById("crisisLevel").innerHTML = "Critical Emergency";
 }
 

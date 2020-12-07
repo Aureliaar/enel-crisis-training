@@ -78,26 +78,38 @@ function initChart(){
 }
 
 function updateCounters(){
-    document.getElementById("readySquads").innerHTML = maxSquads - squadInstances.length;
-    document.getElementById("deployingSquads").innerHTML = (squadInstances.filter(squad => squad.status == squadStatus.DEPLOYING)).length;
-    document.getElementById("deployedSquads").innerHTML = (squadInstances.filter(squad => squad.status == squadStatus.DEPLOYED)).length;
-    document.getElementById("restingSquads").innerHTML = (squadInstances.filter(squad => squad.status == squadStatus.RESTING)).length;
-    document.getElementById("readyTaskForces").innerHTML = maxTaskForces - taskForceInstances.length;
-    document.getElementById("deployingTaskForces").innerHTML = (taskForceInstances.filter(taskForce => taskForce.status == squadStatus.DEPLOYING)).length;
-    document.getElementById("deployedTaskForces").innerHTML = (taskForceInstances.filter(taskForce => taskForce.status == squadStatus.DEPLOYED)).length;
-    document.getElementById("restingTaskForces").innerHTML = (taskForceInstances.filter(taskForce => taskForce.status == squadStatus.RESTING)).length;
-    document.getElementById("readyGenerators").innerHTML = maxGenerators - generatorInstances.length;
-    document.getElementById("deployingGenerators").innerHTML = (generatorInstances.filter(generator => generator.status == squadStatus.DEPLOYING)).length;
-    document.getElementById("deployedGenerators").innerHTML = (generatorInstances.filter(generator => generator.status == squadStatus.DEPLOYED)).length;
+    updateCat("Squads", squadInstances, maxSquads);
+    updateCat("TaskForces", taskForceInstances, maxTaskForces);
+    updateCat("Generators", generatorInstances, maxGenerators);
 
     //document.getElementById("currentMod").innerHTML = calcTotalMod();
     document.getElementById("weatherStatus").innerHTML = WeatherInstance.status;
-    document.getElementById("timer").innerHTML = Math.floor((SecondsOnPage/60)).toFixed(0) + 'm ' + (SecondsOnPage % 60).toFixed(0) + 's ';
+    document.getElementById("timer").innerHTML = Math.floor((SecondsOnPage/60)) + 'm ' +  (SecondsOnPage % 60).toFixed(0) + 's ';
     document.getElementById("lineeGuaste").innerHTML = squadInstances.length + taskForceInstances.length + " / " + Math.floor(calcLineeGuaste());
+
+}
+
+function updateCat(category, instances, max){
+    document.getElementById("ready"+category).innerHTML = max - instances.length;
+    document.getElementById("deploying"+category).innerHTML = (instances.filter(squad => squad.status == squadStatus.DEPLOYING)).length;
+    document.getElementById("deployed"+category).innerHTML = (instances.filter(squad => squad.status == squadStatus.DEPLOYED)).length;
+    if(document.getElementById("resting"+category)){
+        document.getElementById("resting"+category).innerHTML = (instances.filter(squad => squad.status == squadStatus.RESTING)).length;
+        updateBars("resting", category, instances.filter(squad => squad.status == squadStatus.RESTING).length, max);
+    }
+    updateBars("ready", category, max - instances.length, max);
+    updateBars("deploying", category, instances.filter(squad => squad.status == squadStatus.DEPLOYING).length, max);
+    updateBars("deployed", category, instances.filter(squad => squad.status == squadStatus.DEPLOYED).length, max);
+    
+}
+
+function updateBars(status, cat, value, max){
+    $('#'+status+cat+'Bar').attr('aria-valuenow', value).css('width', ((value/max)*100)+"%");
 }
 
 function updateButtonStatus(){
     document.getElementById("level2Crisis").disabled = !level1Crisis;
+    document.getElementById("level3Crisis").disabled = !level2Crisis;
     
     document.getElementById("taskForce").disabled = !(level2Crisis == true && squadInstances.length > 50 && taskForceInstances.length < maxTaskForces)
     document.getElementById("squad").disabled = squadInstances.length == maxSquads || SecondsOnPage < 60;
@@ -113,10 +125,4 @@ function initButtonsAndChart(){
         updateCounters();
         updateButtonStatus();
     }, 66);
-
-    setTimeout(function(){
-        enableUnitButtons();
-        alertify.message('TELECOMANDI ED AUTOMATISMI IN CORSO');
-        // alert("TELECOMANDI ED AUTOMATISMI IN CORSO");
-    }, 60000);
 }
