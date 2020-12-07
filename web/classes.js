@@ -161,7 +161,10 @@ class GruppoElettrogeno extends ClickableModifier{
 
         if (this.status == squadStatus.DEPLOYING && this.time >= this.activationDelay){
             this.status = squadStatus.DEPLOYED;
-            //addNews("Generator Deployed");
+            clickable = new Squad( 0, document.getElementById("squad"));
+            squadInstances.push(clickable);
+            clickable.status = squadStatus.RESTING;
+            maxSquads+=1
         }
     }
 }
