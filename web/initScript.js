@@ -84,7 +84,7 @@ function updateCounters(){
 
     //document.getElementById("currentMod").innerHTML = calcTotalMod();
     document.getElementById("weatherStatus").innerHTML = WeatherInstance.status;
-    document.getElementById("timer").innerHTML = Math.floor((SecondsOnPage/60)) + 'm ' + (SecondsOnPage % 60) + 's ';
+    document.getElementById("timer").innerHTML = Math.floor((SecondsOnPage/60)) + 'm ' +  (SecondsOnPage % 60).toFixed(0) + 's ';
     document.getElementById("lineeGuaste").innerHTML = squadInstances.length + taskForceInstances.length + " / " + Math.floor(calcLineeGuaste());
 
 }
