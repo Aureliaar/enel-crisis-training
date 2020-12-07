@@ -23,8 +23,9 @@
                 
                 console.log("utc date: " + dateutc);
                 console.log(new Date(dateutc));
-                
-                document.getElementById("generatedURL").innerHTML = "/waitingroom.html?utcDate="+dateutc;
+
+                var currentPage = window.location.href.split("/").pop()
+                document.getElementById("generatedURL").innerHTML = window.location.href.replace(currentPage, "waitingroom.html?utcDate="+dateutc);
                 
                 document.getElementById("urlCard").style.display = "block";
             }
