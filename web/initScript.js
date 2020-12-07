@@ -128,5 +128,7 @@ function initButtonsAndChart(){
     }, 1000);
     setTimeout(function(){
         enableUnitButtons();
+        alertify.message('TELECOMANDI ED AUTOMATISMI IN CORSO');
+        // alert("TELECOMANDI ED AUTOMATISMI IN CORSO");
     }, 60000);
 }
