@@ -94,8 +94,8 @@ function updateCounters(){
     document.getElementById("timer").innerHTML = simulatedTimeString()
     let squads = (squadInstances.filter(squad => squad.status == squadStatus.DEPLOYED)).length;
     let tasks  = (taskForceInstances.filter(squad => squad.status == squadStatus.DEPLOYED)).length;
-    let squadLoadFactor = ((squads+tasks)) / Math.ceil(calcLineeGuaste()).toFixed(0);
-    document.getElementById("lineeGuaste").innerHTML = squadLoadFactor +"    ("+ calcLineeGuaste().toFixed(0) + " Lines)";
+    let squadLoadFactor = ((squads+tasks)) / Math.ceil(calcLineeGuaste());
+    document.getElementById("lineeGuaste").innerHTML = squadLoadFactor.toFixed(2) +"    ("+ calcLineeGuaste().toFixed(0) + " Lines)";
 
 }
 
