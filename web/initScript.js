@@ -96,7 +96,7 @@ function updateCounters(){
     let tasks  = (taskForceInstances.filter(squad => squad.status == squadStatus.DEPLOYED)).length;
     let squadLoadFactor = ((squads+tasks)) / Math.ceil(calcLineeGuaste());
     document.getElementById("lineeGuaste").innerHTML = squadLoadFactor.toFixed(2) +"    ("+ calcLineeGuaste().toFixed(0) + " Lines)";
-    // updateBars("time", "", currentTime, maxTime);
+    updateBars("time", "", SecondsOnPage, 960);
     updateBars("faultyLines", "", calcLineeGuaste().toFixed(0),120);
 
 }
