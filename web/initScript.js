@@ -109,6 +109,7 @@ function updateBars(status, cat, value){
 
 function updateButtonStatus(){
     document.getElementById("level2Crisis").disabled = !level1Crisis;
+    document.getElementById("level3Crisis").disabled = !level2Crisis;
     
     document.getElementById("taskForce").disabled = !(level2Crisis == true && squadInstances.length > 50 && taskForceInstances.length < maxTaskForces)
     document.getElementById("squad").disabled = squadInstances.length == maxSquads || SecondsOnPage < 60;
