@@ -8,6 +8,12 @@ var generatorInstances = [];
 var taskForceInstances = [];
 var hardcodedModInstances = [];
 
+var squadsUsed = 0;
+var gensUsed = 0;
+var taskForcesUsed = 0;
+var crisis1time;
+var crisis2time;
+var crisis3time;
 
 var globalMod = 0;
 
@@ -44,8 +50,8 @@ class Weather extends Modifier {
     }
     setWithDelay(status, delay_in_minutes) {
         setTimeout(() => {
+            addNews("Weather is now "+status);
             this.status = status;
-            console.log(this.status);
         }, delay_in_minutes * 60 * 1000 )
     }
     getCurrentMod() {
@@ -152,14 +158,6 @@ function declareLvl2Crisis(){
 }
 
 
-new SelfStoppingModifier(0, 5800, 30000);
-setTimeout(() => {
-    new SelfStoppingModifier(0, -2900, 30000);
-}, 30000)
-
-setTimeout(() => {
-    new SelfStoppingModifier(0, 1000, 20000);
-}, 420 * 1000)
 
 function createNewsItem(timestamp, message){
     let li = document.createElement('li');
@@ -179,3 +177,16 @@ function addNews(timestamp, message){
     const newsList = document.querySelector('#newsFeed');
     newsList.appendChild(createNewsItem(timestamp, message));
 }
+
+new SelfStoppingModifier(0, 5800, 30000);
+setTimeout(() => {
+    new SelfStoppingModifier(0, -2900, 30000);
+    addNews("AUTOMATIC AND REMOTE RESPONSES ENGAGED");
+}, 30000)
+setTimeout(() => {
+    addNews("Squads and Generators are now available");
+})
+setTimeout(() => {
+    new SelfStoppingModifier(0, 1000, 20000);
+}, 420 * 1000)
+

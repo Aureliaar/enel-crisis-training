@@ -62,9 +62,11 @@ class Squad extends ClickableModifier {
         this.restingDuration = 150;
         this.modpersec = -1;
         this.status = squadStatus.DEPLOYING;
+        this.name = "Squad";
 
     }
     destroy() {
+        addNews(this.name +  "ready again");
         globalMod += this.mod;
         const index = squadInstances.indexOf(this);
         if (index > -1) {
@@ -76,10 +78,12 @@ class Squad extends ClickableModifier {
     update(delta_time) {
         this.time += delta_time;
 
-        if (this.time >= this.activationDelay && this.time < this.activationDelay + this.maxDuration) {
+        if (this.status == squadStatus.DEPLOYING && this.time >= this.activationDelay && this.time < this.activationDelay + this.maxDuration) {
+            addNews(this.name + " deploying");
             this.status = squadStatus.DEPLOYED;
         }
-        if (this.time >= (this.activationDelay + this.maxDuration)) {
+        if (this.status == squadStatus.DEPLOYED && this.time >= (this.activationDelay + this.maxDuration)) {
+            addNews(this.name + " deployed");
             this.status = squadStatus.RESTING;
         }
 
@@ -109,13 +113,9 @@ class GruppoElettrogeno extends ClickableModifier{
     update(delta_time){
         this.time += delta_time;
 
-        if (this.time >= this.activationDelay){
+        if (this.status == squadStatus.DEPLOYING && this.time >= this.activationDelay){
             this.status = squadStatus.DEPLOYED;
-        }
-        
-        if (this.status == squadStatus.DEPLOYED){
-            console.log("am doing stuff");
-            this.mod += this.modpersec * delta_time  * calcSquadOvercrowdMod();;
+            addNews("Generator Deployed");
         }
     }
 }
