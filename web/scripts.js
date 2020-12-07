@@ -162,11 +162,14 @@ function declareLvl2Crisis(){
 function createNewsItem(message){
     let li = document.createElement('li');
     let date = document.createElement('span');
-    date.className = "activity-text";
-    date.textContent = document.getElementById("timer").innerHTML.valueOf();
+    date.className = "date";
+    newsDate = new Date();
+    newsDate.setMinutes(SecondsOnPage/60);
+    newsDate.setSeconds(SecondsOnPage % 60);
+    date.textContent = newsDate.getMinutes() +"m, " + newsDate.getSeconds() + "s";
     let news = document.createElement('span');
     news.className = "activity-text";
-    news.textContent = ' - ' + message;
+    news.textContent = message;
     li.className = "feed-item";
     li.appendChild(date);
     li.appendChild(news);
