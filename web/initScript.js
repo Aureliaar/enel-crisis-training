@@ -93,7 +93,6 @@ function updateCounters(){
     //document.getElementById("currentMod").innerHTML = calcTotalMod();
     document.getElementById("weatherStatus").innerHTML = WeatherInstance.status;
     document.getElementById("timer").innerHTML = Math.floor((SecondsOnPage/60)) + 'm ' + (SecondsOnPage % 60) + 's ';
-    console.log(calcLineeGuaste())
     document.getElementById("lineeGuaste").innerHTML = squadInstances.length + taskForceInstances.length + " / " + Math.floor(calcLineeGuaste());
 }
 
@@ -102,7 +101,7 @@ function updateButtonStatus(){
     
     document.getElementById("taskForce").disabled = !(level2Crisis == true && squadInstances.length > 50 && taskForceInstances.length < maxTaskForces)
     document.getElementById("squad").disabled = squadInstances.length == maxSquads || SecondsOnPage < 60;
-    document.getElementById("generator").disabled = generatorInstances.length == maxGenerators || SecondsOnPage < 60;
+    document.getElementById("generator").disabled = generatorInstances.length == maxGenerators || squadInstances.length == maxSquads || SecondsOnPage < 60;
     
 }
 function disableUnitButtons(){
