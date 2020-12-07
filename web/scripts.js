@@ -186,7 +186,13 @@ function realToSimulatedTime(seconds){
     let other = Math.max(0, seconds-60);
 
 }
+setTimeout(() => {
+addNews("Welcome, Crisis Manager. ");
+addNews("A major storm is causing damage across the continent. ");
+addNews("Use the company's resources to mitigate it!");
+addNews("Watch this space for further information on what is happening in the area");
 
+}, 500)
 new SelfStoppingModifier(0, 5800, 30000);
 setTimeout(() => {
     new SelfStoppingModifier(0, -2900, 30000);
