@@ -159,23 +159,23 @@ function declareLvl2Crisis(){
 
 
 
-function createNewsItem(timestamp, message){
+function createNewsItem(message){
     let li = document.createElement('li');
     let date = document.createElement('span');
-    date.className = "date";
-    date.textContent = timestamp;
+    date.className = "activity-text";
+    date.textContent = document.getElementById("timer").innerHTML.valueOf();
     let news = document.createElement('span');
     news.className = "activity-text";
-    news.textContent = message;
+    news.textContent = ' - ' + message;
     li.className = "feed-item";
     li.appendChild(date);
     li.appendChild(news);
     return li;
 }
 
-function addNews(timestamp, message){
+function addNews(message){
     const newsList = document.querySelector('#newsFeed');
-    newsList.appendChild(createNewsItem(timestamp, message));
+    newsList.appendChild(createNewsItem(message));
 }
 
 new SelfStoppingModifier(0, 5800, 30000);
@@ -185,7 +185,7 @@ setTimeout(() => {
 }, 30000)
 setTimeout(() => {
     addNews("Squads and Generators are now available");
-})
+}, 60000)
 setTimeout(() => {
     new SelfStoppingModifier(0, 1000, 20000);
 }, 420 * 1000)
