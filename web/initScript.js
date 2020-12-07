@@ -67,7 +67,7 @@ function initChart(){
         let delta = (Date.now() - lastTimestamp) / 1000.0;
         lastTimestamp = Date.now();
         let totalSeconds = 15 * 60;
-        currentX += delta * 50.0 / totalSeconds ; 
+        currentX += delta * 56.5 / totalSeconds ; 
         SecondsOnPage += delta;
         for (i=0; i<graphScatterValues.length; i++){
             myChart.data.datasets[0].data[i] = graphScatterValues[i];
@@ -77,6 +77,11 @@ function initChart(){
     }, 50)
 }
 
+function simulatedTimeString(){
+    hours = Math.floor(realToSimulatedTime(SecondsOnPage)/60);
+    minutes = realToSimulatedTime(SecondsOnPage)%60;
+    return hours.toFixed(0) + 'h ' + minutes.toFixed(0)  + 'm ';
+}
 function updateCounters(){
     updateCat("Squads", squadInstances, maxSquads);
     updateCat("TaskForces", taskForceInstances, maxTaskForces);
@@ -84,7 +89,9 @@ function updateCounters(){
 
     //document.getElementById("currentMod").innerHTML = calcTotalMod();
     document.getElementById("weatherStatus").innerHTML = WeatherInstance.status;
-    document.getElementById("timer").innerHTML = Math.floor((SecondsOnPage/60)) + 'm ' +  (SecondsOnPage % 60).toFixed(0) + 's ';
+
+    
+    document.getElementById("timer").innerHTML = simulatedTimeString()
     document.getElementById("lineeGuaste").innerHTML = squadInstances.length + taskForceInstances.length + " / " + Math.floor(calcLineeGuaste());
 
 }

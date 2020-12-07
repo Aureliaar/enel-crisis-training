@@ -104,6 +104,7 @@ function calcTotalMod(){
 
 function calcLineeGuaste(){
     let totalMod = calcTotalMod() / 1000;
+    if (SecondsOnPage < 30) { return SecondsOnPage * 4;}
     if (totalMod > 110 ){
         return 110 + (totalMod - 110 ) / 7; 
     }
@@ -170,9 +171,9 @@ function createNewsItem(message){
     let date = document.createElement('span');
     date.className = "date";
     newsDate = new Date();
-    newsDate.setMinutes(SecondsOnPage/60);
-    newsDate.setSeconds(SecondsOnPage % 60);
-    date.textContent = newsDate.getMinutes() +"m, " + newsDate.getSeconds() + "s";
+    newsDate.setHours(realToSimulatedTime(SecondsOnPage) / 60);
+    newsDate.setMinutes(realToSimulatedTime(SecondsOnPage) % 60);
+    date.textContent = newsDate.getHours() +"h, " + newsDate.getMinutes() + "m";
     let news = document.createElement('span');
     news.className = "activity-text";
     news.textContent = message;
@@ -188,8 +189,9 @@ function addNews(message){
 }
 
 function realToSimulatedTime(seconds){
-    let first_minute = Math.max(seconds, 60);
+    let first_minute = Math.min(seconds, 60);
     let other = Math.max(0, seconds-60);
+    return first_minute + other * 4;
 
 }
 setTimeout(() => {
@@ -199,6 +201,7 @@ addNews("Use the company's resources to mitigate it!");
 addNews("Watch this space for further information on what is happening in the area");
 
 }, 500)
+
 new SelfStoppingModifier(0, 5800, 30000);
 setTimeout(() => {
     new SelfStoppingModifier(0, -2900, 30000);
@@ -210,4 +213,4 @@ setTimeout(() => {
 setTimeout(() => {
     new SelfStoppingModifier(0, 1000, 20000);
 }, 420 * 1000)
-
+new NoiseMod(0);
