@@ -97,6 +97,8 @@ function updateCounters(){
     let tasks  = (taskForceInstances.filter(squad => squad.status == squadStatus.DEPLOYED)).length;
     let squadLoadFactor = ((squads+tasks)) / Math.ceil(calcLineeGuaste());
     document.getElementById("lineeGuaste").innerHTML = squadLoadFactor.toFixed(2) +"    ("+ calcLineeGuaste().toFixed(0) + " Lines)";
+    updateBars("time", "", SecondsOnPage, 960);
+    updateBars("faultyLines", "", calcLineeGuaste().toFixed(0),120);
 
 }
 
@@ -117,12 +119,14 @@ function updateCat(category, instances, max){
 function updateBars(status, cat, value, max){
     percentVal = ((value/max)*100);
     $('#'+status+cat+'Bar').attr('aria-valuenow', value).css('width', percentVal+"%");
-    $('#'+status+cat+'Bar').removeClass("bg-warning");
-    $('#'+status+cat+'Bar').removeClass("bg-danger");
-    if (percentVal <= 50 && percentVal > 25){
-        $('#'+status+cat+'Bar').addClass("bg-warning");
-    } else if (percentVal <= 25){
-        $('#'+status+cat+'Bar').addClass("bg-danger");
+    if(cat == "ready"){
+        $('#'+status+cat+'Bar').removeClass("bg-warning");
+        $('#'+status+cat+'Bar').removeClass("bg-danger");
+        if (percentVal <= 50 && percentVal > 25){
+            $('#'+status+cat+'Bar').addClass("bg-warning");
+        } else if (percentVal <= 25){
+            $('#'+status+cat+'Bar').addClass("bg-danger");
+        }
     }
 }
 
