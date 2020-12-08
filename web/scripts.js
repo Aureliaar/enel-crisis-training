@@ -1,4 +1,4 @@
-var maxSquads = 100; 
+var maxSquads = 150; 
 const maxGenerators = 30; 
 const maxTaskForces = 30;
 var level1Crisis = false;
