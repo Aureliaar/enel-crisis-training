@@ -25,6 +25,7 @@ function initChart(){
         type: 'scatter',
         data: chartData,
         options: {
+            aspectRatio: 1.38,
             elements: {
                 point:{
                     radius: 0,
@@ -101,7 +102,14 @@ function updateCounters(){
     updateBars("faultyLines", "", calcLineeGuaste().toFixed(0),120);
 
 }
+function updateCrisisImage(crisis){
+    console.log("assets/Enel_Illustration_crisisL{0}.png".replace("{0}", crisis));
+    document.getElementById("crisisImg").src = "assets/Enel_Illustration_crisisL{0}.png".replace("{0}", crisis);
 
+}
+function updateWeatherImage(weather){
+    document.getElementById("weatherImg").src = "assets/Enel_Illustration_weather_catastrophic.png".replace("catastrophic", weather);
+}
 function updateCat(category, instances, max){
     document.getElementById("ready"+category).innerHTML = max - instances.length;
     document.getElementById("deploying"+category).innerHTML = (instances.filter(squad => squad.status == squadStatus.DEPLOYING)).length;
@@ -131,11 +139,14 @@ function updateBars(status, cat, value, max){
 }
 
 function updateButtonStatus(){
-    document.getElementById("level1Crisis").disabled = level1Crisis ;
-    document.getElementById("level2Crisis").disabled = !level1Crisis || level2Crisis;
-    document.getElementById("level3Crisis").disabled = !level2Crisis || emergency;
+    // document.getElementById("level1Crisis").disabled = level1Crisis ;
+    // document.getElementById("level2Crisis").disabled = !level1Crisis || level2Crisis;
+    // document.getElementById("level3Crisis").disabled = !level2Crisis || emergency;
+    document.getElementById("level1Crisis").disabled = level2Crisis || emergency ;
+    document.getElementById("level2Crisis").disabled = emergency;
+    document.getElementById("level3Crisis").disabled = emergency;
     
-    document.getElementById("taskForce").disabled = !(level2Crisis == true && squadInstances.length > 50 && taskForceInstances.length < maxTaskForces)
+    document.getElementById("taskForce").disabled = !((level2Crisis == true || emergency == true) && squadInstances.length > 50 && taskForceInstances.length < maxTaskForces)
     document.getElementById("squad").disabled = squadInstances.length == maxSquads || SecondsOnPage < 60;
     document.getElementById("generator").disabled = generatorInstances.length == maxGenerators || squadInstances.length == maxSquads || SecondsOnPage < 60;
     
