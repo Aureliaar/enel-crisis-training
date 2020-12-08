@@ -45,6 +45,7 @@
                         <h5>Current Emergency Level</h5>
                         <h6 id="crisisLevel">No crisis</h6>
 
+                        <div class="hide-on-potato" id="crisisImg"></div>
 
                         <h6>Declare Emergencies: </h6>
                         <div class="d-flex flex-row align-items-center">
@@ -62,6 +63,7 @@
                     <div class="card-body text-center">
                         <h5>Current Weather Conditions</h5>
                         <h6 id="weatherStatus"></h6>
+                        <div class="hide-on-potato" id="weatherImg"></div>
                     </div>
                 </div>
             </div>
@@ -151,7 +153,7 @@
                     </div>
                 </div>
                 <div class="card-body text-center p-0">
-                    <button type="button" class="btn btn-primary btn-lg waves-effect waves-light m-1" id="squad"
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-1" id="squad"
                         onclick="sendSquad(id)">Deploy Squad</button>
                 </div>
             </div>
@@ -184,7 +186,7 @@
                     </div>
                 </div>
                 <div class="card-body text-center p-0">
-                    <button type="button" class="btn btn-primary btn-lg waves-effect waves-light m-1"
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-1"
                         id="generator" onclick="sendGenerator(id)">Deploy Generator</button>
                 </div>
             </div>
@@ -224,7 +226,7 @@
                     </div>
                 </div>
                 <div class="card-body text-center p-0">
-                    <button type="button" class="btn btn-primary btn-lg waves-effect waves-light m-1"
+                    <button type="button" class="btn btn-primary waves-effect waves-light m-1"
                         id="taskForce" onclick="sendTaskForce(id)">Deploy Task Force</button>
                 </div>
             </div>
