@@ -6,6 +6,8 @@ button {
     /*width: 105px;*/
 }
 
+
+
 p {
     font-size: 15px;
 }
@@ -114,6 +116,10 @@ canvas {
 
     .font-size-18{
         font-size: 16px !important;
+    }
+
+    #level1Crisis, #level2Crisis, #level3Crisis {
+        font-size: 12px !important;
     }
 }
 
