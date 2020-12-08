@@ -21,11 +21,10 @@
                 date.setMinutes(date.getMinutes() + minutes);
                 dateutc = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
                 
-                console.log("utc date: " + dateutc);
-                console.log(new Date(dateutc));
 
-                var currentPage = window.location.href.split("/").pop();
-                document.getElementById("generatedURL").innerHTML = window.location.href.replace(currentPage+ "waitingroom.html?utcDate="+dateutc);
+                var currentPage = window.location.href.replace("index.html", "waitingroom.html");
+                let fullstr = `${currentPage}?utcDate=${dateutc}`;
+                document.getElementById("generatedURL").innerHTML = fullstr;
                 
                 document.getElementById("urlCard").style.display = "block";
             }
