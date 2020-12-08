@@ -22,8 +22,8 @@
                 dateutc = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
                 
 
-                var currentPage = window.location.href.replace("index.html", "waitingroom.html");
-                let fullstr = `${currentPage}?utcDate=${dateutc}`;
+                var currentPage = window.location.href.replace("index.html", "");
+                let fullstr = `${currentPage}waitingroom.html?utcDate=${dateutc}`;
                 document.getElementById("generatedURL").innerHTML = fullstr;
                 
                 document.getElementById("urlCard").style.display = "block";
