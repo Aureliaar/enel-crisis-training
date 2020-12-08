@@ -271,5 +271,5 @@ function sendDataToKVStorage(timestamp, username ){
 
 function sendEmptyCall(){
     var value = {};
-    $.post("https://kvdb.io/BNQgP2ny19BJkNZYTe1h7m/game", JSON.stringify(value));
+    $.post("https://kvdb.io/BNQgP2ny19BJkNZYTe1h7m/game_"+timestamp, JSON.stringify(value));
 }
