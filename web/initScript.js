@@ -151,10 +151,19 @@ function updateButtonStatus(){
     document.getElementById("generator").disabled = generatorInstances.length == maxGenerators || squadInstances.length == maxSquads || SecondsOnPage < 60;
     
 }
+
+function getDataFromUrl(){
+    const params = new URLSearchParams(document.location.search);
+    timestamp = params.get("timestamp");
+    console.log(timestamp);
+    username = params.get("username");
+    console.log(username);
+}
 var WeatherInstance;
 var SecondsOnPage = 0;
 function initButtonsAndChart(){
     initChart();
+    getDataFromUrl();
     WeatherInstance = new Weather();
     setInterval(function(){
         updateCounters();
