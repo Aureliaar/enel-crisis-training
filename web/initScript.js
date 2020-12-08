@@ -108,6 +108,7 @@ function updateCrisisImage(crisis){
 
 }
 function updateWeatherImage(weather){
+    console.log("assets/Enel_Illustration_weather_catastrophic.png".replace("catastrophic", weather));
     document.getElementById("weatherImg").src = "assets/Enel_Illustration_weather_catastrophic.png".replace("catastrophic", weather);
 }
 function updateCat(category, instances, max){

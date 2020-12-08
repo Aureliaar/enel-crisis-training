@@ -20,7 +20,6 @@
                 var date = new Date();
                 date.setMinutes(date.getMinutes() + minutes);
                 dateutc = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
-                
 
                 var currentPage = window.location.href.replace("index.html", "");
                 let fullstr = `${currentPage}waitingroom.html?utcDate=${dateutc}`;
