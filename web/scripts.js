@@ -57,7 +57,7 @@ class Weather extends Modifier {
             addNews("Weather is now "+status);
             updateWeatherImage(status);
             this.status = status;
-        }, delay_in_minutes * 5 * 1000 )
+        }, delay_in_minutes * 30 * 1000 )
     }
     getCurrentMod() {
         switch (this.status) {
