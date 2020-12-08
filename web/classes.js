@@ -97,7 +97,7 @@ class Squad extends ClickableModifier {
         // this.maxDuration = 60;
         this.maxDuration = 120;
         this.restingDuration = 150;
-        this.modpersec = -2.5;
+        this.modpersec = -5;
         this.status = squadStatus.DEPLOYING;
         this.name = "Squad";
         //addNews(this.name + " deployed");
