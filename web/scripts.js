@@ -254,7 +254,7 @@ function sendDataToKVStorage(timestamp, username, ){
     
     // /waitinglist_" + value.email
 
-    $.post("https://kvdb.io/BNQgP2ny19BJkNZYTe1h7m", JSON.stringify(value))
+    $.post("https://kvdb.io/BNQgP2ny19BJkNZYTe1h7m/game_"+timestamp, JSON.stringify(value))
         .done(function() {
             alert('Thank you');
         });
