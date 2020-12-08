@@ -25,6 +25,7 @@ function initChart(){
         type: 'scatter',
         data: chartData,
         options: {
+            aspectRatio: 1.38,
             elements: {
                 point:{
                     radius: 0,
