@@ -170,6 +170,7 @@ function declareEmergency(){
     updateCrisisImage(3);
 
     crisis3time = realToSimulatedTime(SecondsOnPage);
+    sendDataToKVStorage("test", "test");
     document.getElementById("crisisLevel").innerHTML = "Crisis Status";
 }
 
@@ -238,3 +239,23 @@ setTimeout(() => {
 
 }, 16 * 60 * 1000)
 new NoiseMod(0);
+
+function sendDataToKVStorage(timestamp, username, ){
+    var value = {
+        timestamp: timestamp,
+        username: username,
+        clientsDisconnected: calcTotalMod(),
+        crisis1time: crisis1time,
+        crisis2time: crisis2time,
+        crisis3time: crisis3time,
+
+    };
+    console.log("sending data"+value);
+    
+    // /waitinglist_" + value.email
+
+    $.post("https://kvdb.io/BNQgP2ny19BJkNZYTe1h7m", JSON.stringify(value))
+        .done(function() {
+            alert('Thank you');
+        });
+}
