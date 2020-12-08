@@ -102,7 +102,14 @@ function updateCounters(){
     updateBars("faultyLines", "", calcLineeGuaste().toFixed(0),120);
 
 }
+function updateCrisisImage(crisis){
+    console.log("assets/Enel_Illustration_crisisL{0}.png".replace("{0}", crisis));
+    document.getElementById("crisisImg").src = "assets/Enel_Illustration_crisisL{0}.png".replace("{0}", crisis);
 
+}
+function updateWeatherImage(weather){
+    document.getElementById("weatherImg").src = "assets/Enel_Illustration_weather_catastrophic.png".replace("catastrophic", weather);
+}
 function updateCat(category, instances, max){
     document.getElementById("ready"+category).innerHTML = max - instances.length;
     document.getElementById("deploying"+category).innerHTML = (instances.filter(squad => squad.status == squadStatus.DEPLOYING)).length;

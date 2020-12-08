@@ -52,8 +52,9 @@ class Weather extends Modifier {
     setWithDelay(status, delay_in_minutes) {
         setTimeout(() => {
             addNews("Weather is now "+status);
+            updateWeatherImage(status);
             this.status = status;
-        }, delay_in_minutes * 30 * 1000 )
+        }, delay_in_minutes * 5 * 1000 )
     }
     getCurrentMod() {
         switch (this.status) {
@@ -152,17 +153,22 @@ function initTaskForce(buttonId){
 function declareLvl1Crisis(){
     level1Crisis = true;
     crisis1time = realToSimulatedTime(SecondsOnPage);
+    updateCrisisImage(1);
     document.getElementById("crisisLevel").innerHTML = "Level 1 Emergency";
 }
 
 function declareLvl2Crisis(){
     level2Crisis = true;
+    updateCrisisImage(2);
+
     crisis2time = realToSimulatedTime(SecondsOnPage);
     document.getElementById("crisisLevel").innerHTML = "Level 2 Emergency";
 }
 
 function declareEmergency(){
     emergency = true;
+    updateCrisisImage(3);
+
     crisis3time = realToSimulatedTime(SecondsOnPage);
     document.getElementById("crisisLevel").innerHTML = "Crisis Status";
 }
