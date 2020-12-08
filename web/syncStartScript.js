@@ -13,7 +13,6 @@ var username
 function checkTime() {
 
     var date = new Date();
-    console.log(date);
     var utcDate = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
     // var h = d.getHours();
     // var m = d.getMinutes();

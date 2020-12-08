@@ -18,6 +18,9 @@ var crisis3time;
 
 var globalMod = 0;
 
+var timestamp;
+var username;
+
 const squadStatus = {
     DEPLOYING: "deploying",
     DEPLOYED: "deployed",
@@ -170,7 +173,10 @@ function declareEmergency(){
     updateCrisisImage(3);
 
     crisis3time = realToSimulatedTime(SecondsOnPage);
-    sendDataToKVStorage("test", "test");
+    
+    sendEmptyCall();
+    sendDataToKVStorage(timestamp, username);
+    //sendDataToKVStorage('1607431558000', 'test2');
     document.getElementById("crisisLevel").innerHTML = "Crisis Status";
 }
 
@@ -240,7 +246,7 @@ setTimeout(() => {
 }, 16 * 60 * 1000)
 new NoiseMod(0);
 
-function sendDataToKVStorage(timestamp, username, ){
+function sendDataToKVStorage(timestamp, username ){
     var value = {
         timestamp: timestamp,
         username: username,
@@ -254,8 +260,16 @@ function sendDataToKVStorage(timestamp, username, ){
     
     // /waitinglist_" + value.email
 
-    $.post("https://kvdb.io/BNQgP2ny19BJkNZYTe1h7m/game_"+timestamp, JSON.stringify(value))
+    // $.post("https://kvdb.io/BNQgP2ny19BJkNZYTe1h7m/game", JSON.stringify(value))
+    // $.post("https://kvdb.io/BNQgP2ny19BJkNZYTe1h7m/game_"+timestamp, JSON.stringify(value))
+    $.post("https://kvdb.io/BNQgP2ny19BJkNZYTe1h7m/game_"+timestamp+"_"+username, JSON.stringify(value))
         .done(function() {
             alert('Thank you');
         });
+
+}
+
+function sendEmptyCall(){
+    var value = {};
+    $.post("https://kvdb.io/BNQgP2ny19BJkNZYTe1h7m/game", JSON.stringify(value));
 }
